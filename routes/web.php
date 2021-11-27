@@ -23,6 +23,21 @@ Route::group([
     Route::get('/dashboard', function () {
         return view('dashboard');
     });
+
+    
+    Route::get('/welcome', function () {
+        return view('welcome');
+    })->name('welcome');
+
+
+    
+    Route::get('languages/', function() { return view('languages.index'); })->name('languages');
+    Route::get('languages/create', function() { return view('languages.modals.create'); })->name('language.create');
+    Route::get('language/edit', function() { return view('languages.modals.edit'); })->name('language.edit');
+
+    Route::get('countries/', function() { return view('countries.index');})->name('countries');
+    Route::get('countries/create', function() { return view('countries.modals.create'); })->name('country.create');
+    Route::get('contries/edit', function() { return view('countries.modals.edit'); })->name('country.edit');
 });
 
 // Route::get('/dashboard', function () {
