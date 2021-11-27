@@ -31,9 +31,11 @@ Route::group([
 
 
     
-    Route::get('languages/', function() { return view('languages.index'); })->name('languages');
+    Route::get('languages/', 'LanguageController@all')->name('languages');
     Route::get('languages/create', function() { return view('languages.modals.create'); })->name('language.create');
-    Route::get('language/edit', function() { return view('languages.modals.edit'); })->name('language.edit');
+    Route::get('languages/getById{id}', function() { return view('languages.modals.edit'); })->name('language.getById');
+    Route::post('languages/store', 'LanguageController@store')->name('language.store');
+    Route::put('languages/{id}', 'LanguageControll@update')->name('language.update');
 
     Route::get('countries/', function() { return view('countries.index');})->name('countries');
     Route::get('countries/create', function() { return view('countries.modals.create'); })->name('country.create');
