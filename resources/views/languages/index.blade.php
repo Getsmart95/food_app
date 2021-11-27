@@ -55,7 +55,11 @@
                                                             </button>
                                                             <div class="dropdown-menu">
                                                                 <a class="dropdown-item" href="{{ Route('language.getById', ['id' => $language->id]) }}">Edit</a>
-                                                                <a class="dropdown-item" href="#">Delete</a>
+                                                                <form method="post" action="{{ Route('language.destroy', $language->id) }}" autocomplete="off">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                <button class="dropdown-item" type="submit">Delete</button>
+                                                                </form>
                                                             </div>
                                                         </div>
                                                     </td>

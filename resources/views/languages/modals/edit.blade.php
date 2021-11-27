@@ -19,10 +19,11 @@
                         </div>
                         <div class="card-body">
                             <div class="basic-form">
-                                <form method="post" action="{{ route('language.update') }}" autocomplete="off">
+                                <form method="post" action="{{ route('language.update', $language->id) }}" autocomplete="off">
                                     @csrf
+                                    @method('PUT')
                                     <div class="input-group mb-3">
-                                        <input type="text" class="form-control" value="{{ $language->name }}">
+                                        <input type="text" class="form-control" name="name" value="{{ $language->name }}">
                                         <button class="btn btn-primary" type="submit">Save</button>
                                     </div>
                                 </form>
