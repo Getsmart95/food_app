@@ -765,42 +765,6 @@
 						</ul>
 
                     </li>
-					<li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-						<i class="flaticon-025-dashboard"></i>
-						<span class="nav-text">Menu</span>
-						</a>
-						<ul aria-expanded="false">
-							<li><a href="index.html">Recipe</a></li>
-							<li><a href="index-2.html">Ingredient</a></li>
-							<li><a href="index-2.html">Category</a></li>
-							<li><a href="index-2.html">Cuisine</a></li>
-							<li><a href="index-2.html">Ingredients Type</a></li>
-						</ul>
-					</li>
-
-					<li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-						<i class="flaticon-086-star"></i>
-						<span class="nav-text">Statuses</span>
-						</a>
-						<ul aria-expanded="false">
-							<li><a href="index-2.html">Statuses</a></li>
-							<li><a href="index.html">Languages</a></li>
-							<li><a href="index-2.html">Countries</a></li>
-							<li><a href="index-2.html">Genders</a></li>
-						</ul>
-					</li>
-
-					<li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-						<i class="flaticon-025-dashboard"></i>
-						<span class="nav-text">Add-on</span>
-						</a>
-						<ul aria-expanded="false">
-							<li><a href="index.html">Languages</a></li>
-							<li><a href="index-2.html">Countries</a></li>
-							<li><a href="index-2.html">Genders</a></li>
-						</ul>
-					</li>
-
                     <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
 						<i class="flaticon-050-info"></i>
 							<span class="nav-text">Apps</span>
