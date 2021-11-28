@@ -36,6 +36,7 @@ Route::group([
             return view('dashboard');
         });
     
+        Route::get('next/', 'CountryController@getNextVal');
         Route::get('languages/', 'LanguageController@all')->name('languages');
         Route::get('languages/create', function() { return view('languages.modals.create'); })->name('language.create');
         Route::get('languages/getById/{id}', 'LanguageController@getById')->name('language.getById');

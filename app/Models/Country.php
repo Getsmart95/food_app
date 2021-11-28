@@ -19,4 +19,8 @@ class Country extends Model
         'name',
         'image_path'
     ];
+
+    public function translation() {
+        return $this->belongsTo('App\Models\Translate','name', 'id');
+    }
 }

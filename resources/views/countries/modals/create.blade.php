@@ -28,7 +28,7 @@
                                     <div class="input-group mb-3  input-success">
                                         <span class="input-group-text">{{ $language->name }}</span>
                                         <input type="text" class="form-control" name="value[]">
-                                        <input type="text" class="form-control" name="language_id[]" value="{{ $language->code }}">
+                                        <input type="text" class="form-control" name="language_code[]" value="{{ $language->code }}">
                                         
                                     </div>
                                     @endforeach

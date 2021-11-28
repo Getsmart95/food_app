@@ -46,8 +46,8 @@
                                             @foreach ($countries as $country)
                                                 <tr>
                                                     <td><strong>{{ $country->id }}</strong></td>
-                                                    <td>{{ $country->name }}</td>
-                                                    <td></td>
+                                                    <td>{{ $country->translation->value }}</td>
+                                                    {{-- <td>{{ $country->translationvalue }}</td> --}}
                                                     <td>{{ $country->created_at}}</td>
                                                     <td>{{ $country->updated_at }}</td>
                                                     <td>{{ $country->image_path}}</td>
