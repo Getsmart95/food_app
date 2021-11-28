@@ -29,7 +29,8 @@ class LanguageController extends Controller
 
     public function update(Request $request, $id) {
         Language::whereId($id)->update([
-            'name' => $request->name
+            'name' => $request->name,
+            'code' => $request->code
         ]);
 
         return redirect()->route('languages');

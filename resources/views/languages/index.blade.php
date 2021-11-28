@@ -34,7 +34,7 @@
                                         <thead>
                                             <tr>
                                                 <th style="width:80px;"><strong>#</strong></th>
-                                                {{-- <th><strong>ID</strong></th> --}}
+                                                <th><strong>CODE</strong></th>
                                                 <th><strong>LANGUAGE</strong></th>
                                                 <th><strong>CREATED</strong></th>
                                                 <th><strong>UPDATED</strong></th>
@@ -45,6 +45,7 @@
                                             @foreach ($languages as $language)
                                                 <tr>
                                                     <td><strong>{{ $language->id }}</strong></td>
+                                                    <td>{{ $language->code}}</td>
                                                     <td>{{ $language->name}}</td>
                                                     <td>{{ $language->created_at}}</td>
                                                     <td>{{ $language->updated_at}}</td>

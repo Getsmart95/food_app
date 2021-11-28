@@ -24,6 +24,7 @@
                                     @method('PUT')
                                     <div class="input-group mb-3">
                                         <input type="text" class="form-control" name="name" value="{{ $language->name }}">
+                                        <input type="text" class="form-control" name="code" value="{{ $language->code }}">
                                         <button class="btn btn-primary" type="submit">Save</button>
                                     </div>
                                 </form>

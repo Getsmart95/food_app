@@ -21,9 +21,11 @@
                             <div class="basic-form">
                                 <form method="post" action="{{ route('language.store') }}" autocomplete="off">
                                     @csrf
-                                    
-                                    <div class="input-group mb-3">
+                                    <div class="input-group mb-3 input-success">
+                                        <span class="input-group-text">Language</span>
                                         <input type="text" name="name" class="form-control">
+                                        <span class="input-group-text">Code</span>
+                                        <input type="text" name="code" class="form-control">
                                         <button class="btn btn-primary" type="submit">Save</button>
                                     </div>
                                 </form>
