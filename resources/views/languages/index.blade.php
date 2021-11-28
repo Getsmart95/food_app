@@ -33,12 +33,12 @@
                                     <table class="table table-responsive-md">
                                         <thead>
                                             <tr>
-                                                {{-- <th style="width:80px;"><strong>#</strong></th> --}}
-                                                <th><strong>ID</strong></th>
+                                                <th style="width:80px;"><strong>#</strong></th>
+                                                {{-- <th><strong>ID</strong></th> --}}
                                                 <th><strong>LANGUAGE</strong></th>
                                                 <th><strong>CREATED</strong></th>
                                                 <th><strong>UPDATED</strong></th>
-                                                <th><strong>ACTION</strong></th>
+                                                <th><strong></strong></th>
                                             </tr>
                                         </thead>
                                         <tbody>

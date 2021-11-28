@@ -16,13 +16,12 @@ class LanguageController extends Controller
 
     public function store(Request $request) {
         $language = new Language($request->all());
-
         $language->save();
-        return redirect()->back();
+        return redirect()->route('languages');
     }
 
     public function getById($id) {
-        $language = Language::whereId($id)->first();
+        $language = Language::find($id);;
         return view('languages.modals.edit', [
             'language' => $language
         ]);
@@ -37,7 +36,7 @@ class LanguageController extends Controller
     }
 
     public function destroy(Request $request, $id) {
-        $language = Language::destroy($id);
+        Language::destroy($id);
         return redirect()->back();
     }
 }

@@ -19,16 +19,19 @@
                         </div>
                         <div class="card-body">
                             <div class="basic-form">
-                                <form>
+                                <form method="post" action="{{ route('country.store') }}" autocomplete="off">
+                                    @csrf
+                                    {{-- @method('POST') --}}
                                     <label>Your vanity URL</label>
+
+                                    @foreach ($languages as $language)
                                     <div class="input-group mb-3  input-success">
-                                        <span class="input-group-text">Русский</span>
-                                        <input type="text" class="form-control">
+                                        <span class="input-group-text">{{ $language->name }}</span>
+                                        <input type="text" class="form-control" name="value[]">
+                                        <input type="text" class="form-control" name="language_id[]" value="{{ $language->id }}">
                                     </div>
-                                    <div class="input-group mb-3  input-success">
-                                        <span class="input-group-text">English</span>
-                                        <input type="text" class="form-control">
-                                    </div>
+                                    @endforeach
+                                    
                                     <div class="col-16">
                                         <button type="submit" style="float: right" class="btn btn-primary mb-2">Save</button>
                                     </div>

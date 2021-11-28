@@ -24,9 +24,14 @@ Route::group([
         return view('dashboard');
     });
 
-    
+    Route::get('/1', function () {
+        return App::getLocale();
+    });
     Route::get('/welcome', function () {
-        return view('welcome');
+        // return session()->get('locale');
+        App::setLocale('ru');
+        //\LaravelLocalization::setLocale('ru');
+        return App::getLocale();
     })->name('welcome');
 
 
@@ -38,8 +43,9 @@ Route::group([
     Route::put('languages/update/{id}', 'LanguageController@update')->name('language.update');
     Route::delete('languages/destroy/{id}', 'LanguageController@destroy')->name('language.destroy');
 
-    Route::get('countries/', function() { return view('countries.index');})->name('countries');
-    Route::get('countries/create', function() { return view('countries.modals.create'); })->name('country.create');
+    Route::get('countries/', 'CountryController@all')->name('countries');
+    Route::get('countries/create', 'CountryController@create')->name('country.create');
+    Route::post('countries/store', 'CountryController@store')->name('country.store');
     Route::get('contries/edit', function() { return view('countries.modals.edit'); })->name('country.edit');
 });
 
