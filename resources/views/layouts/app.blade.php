@@ -728,12 +728,11 @@
                                     </a>
                                 </li>
                                 <li class="nav-item dropdown notification_dropdown">
-                                    {{-- <form method="POST" action="{{ Route('language.switch', $_POST[]) }}"> --}}
                                         <select class="me-sm-2 default-select wide" onchange="window.location.href=this.options[this.selectedIndex].value" name="lang" id="inlineFormCustomSelect">
-                                            <option value ="{{ Route('language.switch', ['lang' => 'ru']) }}" {{App::getLocale() === 'ru' ? 'selected' : null}}>Русский</option>
-                                            <option value="{{ Route('language.switch', ['lang' => 'en']) }}" {{App::getLocale() === 'en' ? 'selected' : null}}>English</option>
+                                            @foreach ($languages as $language)
+                                                <option value ="{{ Route('language.switch', ['lang' => $language->code]) }}" {{App::getLocale() === $language->code ? 'selected' : null}}>{{$language->name}}</option>
+                                            @endforeach
                                         </select>
-                                    {{-- </form> --}}
                                 </li>
                                 <li class="nav-item dropdown  header-profile">
                                     <a class="nav-link" href="javascript:void(0);" role="button" data-bs-toggle="dropdown">
