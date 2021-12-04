@@ -35,7 +35,7 @@
                                             <tr>
                                                 <th style="width:80px;"><strong>#</strong></th>
                                                 <th><strong>COUNTRY</strong></th>
-                                                <th><strong>LANGUAGE</strong></th>
+                                                {{-- <th><strong>LANGUAGE</strong></th> --}}
                                                 <th><strong>CREATED</strong></th>
                                                 <th><strong>UPDATED</strong></th>
                                                 <th><strong>IMAGE</strong></th>
@@ -47,7 +47,7 @@
                                                 <tr>
                                                     <td><strong>{{ $country->id }}</strong></td>
                                                     <td>{{ $country->translation->value }}</td>
-                                                    {{-- <td>{{ $country->translationvalue }}</td> --}}
+                                                    {{-- <td>{{ $country->translation->language_code }}</td> --}}
                                                     <td>{{ $country->created_at}}</td>
                                                     <td>{{ $country->updated_at }}</td>
                                                     <td>{{ $country->image_path}}</td>
@@ -57,8 +57,13 @@
                                                                 <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"/><circle fill="#000000" cx="5" cy="12" r="2"/><circle fill="#000000" cx="12" cy="12" r="2"/><circle fill="#000000" cx="19" cy="12" r="2"/></g></svg>
                                                             </button>
                                                             <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="#">Edit</a>
-                                                                <a class="dropdown-item" href="#">Delete</a>
+                                                                <a class="dropdown-item" href="{{ Route('country.getById', ['id' => $country->name]) }}">Edit</a>
+                                                                <form method="post" action="{{ Route('country.destroy', $country) }}" autocomplete="off">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                <button class="dropdown-item" type="submit">Delete</button>
+                                                                </form>
+                                                                {{-- <a class="dropdown-item" href=" {{ Route('country.destroy' , [$id] => $country->id) }}">Delete</a> --}}
                                                             </div>
                                                         </div>
                                                     </td>

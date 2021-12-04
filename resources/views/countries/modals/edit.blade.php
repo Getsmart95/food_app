@@ -19,18 +19,26 @@
                         </div>
                         <div class="card-body">
                             <div class="basic-form">
-                                <form>
+                                <form method="post" action="{{ route('country.update', $id) }}" autocomplete="off">
+                                    @csrf
+                                    @method('PUT')
                                     <label>Your vanity URL</label>
+
+                                    @foreach ($translates as $translate)
                                     <div class="input-group mb-3  input-success">
-                                        <span class="input-group-text">Русский</span>
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" name="value[]" value="{{ $translate->value }}">
+                                        <input type="text" class="form-control" name="language_code[]" value="{{ $translate->language_code }}">
+                                        <button class="btn btn-primary" type="submit">Save</button>
+                                        {{-- <span class="input-group-text">{{ $translate->value }}</span>
+                                        <input type="text" class="form-control" name="value[]">
+                                        <input type="text" class="form-control" name="language_code[]" value="{{ $language->code }}"> --}}
+                                        
                                     </div>
-                                    <div class="input-group mb-3  input-success">
-                                        <span class="input-group-text">English</span>
-                                        <input type="text" class="form-control">
-                                    </div>
+                                    @endforeach
+                                    
                                     <div class="col-16">
                                         <button type="submit" style="float: right" class="btn btn-primary mb-2">Save</button>
+                                    </div>
                                     </div>
                                 </form>
                             </div>

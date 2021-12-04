@@ -47,7 +47,9 @@ Route::group([
         Route::get('countries/', 'CountryController@all')->name('countries');
         Route::get('countries/create', 'CountryController@create')->name('country.create');
         Route::post('countries/store', 'CountryController@store')->name('country.store');
-        Route::get('contries/edit', function() { return view('countries.modals.edit'); })->name('country.edit');
+        Route::get('contries/getById/{id}', 'CountryController@getById')->name('country.getById');
+        Route::delete('countries/destroy/{id}', 'CountryController@destroy')->name('country.destroy');
+        Route::put('countries/update/{id}', 'CountryController@update')->name('country.update');
     });
 });
 

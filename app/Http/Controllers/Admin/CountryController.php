@@ -13,11 +13,19 @@ class CountryController extends Controller
 {
     public function all() {
         $countries = Country::with(['translation' => function($query) { 
-            $query->where('language_code', App::getLocale())
-            ->where('id',1)->get();}])->where('id', 49)->get();
+            $query->where('language_code', App::getLocale())->get();}])->get();
         // return $countries;
         return view('countries.index',[
             'countries' => $countries
+        ]);
+    }
+
+    public function getById($id) {
+        $translates = Translate::whereId($id)->get();
+        // return $translates;
+        return view('countries.modals.edit', [
+            'id' => $id,
+            'translates' => $translates
         ]);
     }
 
@@ -40,13 +48,31 @@ class CountryController extends Controller
             $translate = new Translate($data);
             $translate->save();
             
-            $country = new Country();
-            $country->name = $translate->id;
-            $country->save();
+           
         }
+        $country = new Country();
+        $country->name = $nextVal;
+        $country->save();
     }
 
-    public function getNextVal() {
+    public function update(Request $request) {
+        // return $request;
+        foreach($request->value as $key => $value){
+            Translate::whereId($request->id)->where('language_code', $request->language_code[$key])->update([
+                'value' => $value
+                    
+            ]);
+            
+           
+        }        
+    }
+
+    public function destroy($id) {
+        Country::destroy($id);
+        return redirect()->back();
+    }
+
+    private function getNextVal() {
         $nextVal = Translate::max('id');
         if( !empty($nextVal) ) { 
             return $nextVal + 1;
