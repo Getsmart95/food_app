@@ -34,7 +34,7 @@
         <!-- FAVICONS ICON -->
         <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
         <link rel="stylesheet" href="vendor/chartist/css/chartist.min.css">
-        <link href="vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
+        <link href="{{ asset('vendor/jquery-nice-select/css/nice-select.css') }}" rel="stylesheet">
         <!-- Style css -->
         <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 	
@@ -631,6 +631,7 @@
                                     </div>
                                 </div>
                             </div>
+                            
                             <ul class="navbar-nav header-right">
                                 <li class="nav-item recipe">
                                     <a href="javascript:void(0);" class="btn btn-primary btn-rounded">Recipe Guide</a>
@@ -725,6 +726,14 @@
                                     </svg>
                                         <span class="badge light text-white bg-primary rounded-circle">5</span>
                                     </a>
+                                </li>
+                                <li class="nav-item dropdown notification_dropdown">
+                                    {{-- <form method="POST" action="{{ Route('language.switch', $_POST[]) }}"> --}}
+                                        <select class="me-sm-2 default-select wide" onchange="window.location.href=this.options[this.selectedIndex].value" name="lang" id="inlineFormCustomSelect">
+                                            <option value ="{{ Route('language.switch', ['lang' => 'ru']) }}" {{App::getLocale() === 'ru' ? 'selected' : null}}>Русский</option>
+                                            <option value="{{ Route('language.switch', ['lang' => 'en']) }}" {{App::getLocale() === 'en' ? 'selected' : null}}>English</option>
+                                        </select>
+                                    {{-- </form> --}}
                                 </li>
                                 <li class="nav-item dropdown  header-profile">
                                     <a class="nav-link" href="javascript:void(0);" role="button" data-bs-toggle="dropdown">

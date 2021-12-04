@@ -22,18 +22,14 @@
                                 <form method="post" action="{{ route('country.update', $id) }}" autocomplete="off">
                                     @csrf
                                     @method('PUT')
-                                    <label>Your vanity URL</label>
+                                    {{-- <label>Your vanity URL</label> --}}
 
                                     @foreach ($translates as $translate)
-                                    <div class="input-group mb-3  input-success">
-                                        <input type="text" class="form-control" name="value[]" value="{{ $translate->value }}">
-                                        <input type="text" class="form-control" name="language_code[]" value="{{ $translate->language_code }}">
-                                        <button class="btn btn-primary" type="submit">Save</button>
-                                        {{-- <span class="input-group-text">{{ $translate->value }}</span>
-                                        <input type="text" class="form-control" name="value[]">
-                                        <input type="text" class="form-control" name="language_code[]" value="{{ $language->code }}"> --}}
-                                        
-                                    </div>
+                                        <div class="input-group mb-3  input-success">
+                                            <span class="input-group-text">{{ $translate->language_code }}</span>
+                                            <input type="hidden" class="form-control" name="language_code[]" value="{{ $translate->language_code }}">
+                                            <input type="text" class="form-control" name="value[]" value="{{ $translate->value }}">
+                                        </div>
                                     @endforeach
                                     
                                     <div class="col-16">

@@ -22,14 +22,13 @@
                                 <form method="post" action="{{ route('country.store') }}" autocomplete="off">
                                     @csrf
                                     {{-- @method('POST') --}}
-                                    <label>Your vanity URL</label>
+                                    {{-- <label>Your vanity URL</label> --}}
 
                                     @foreach ($languages as $language)
                                     <div class="input-group mb-3  input-success">
                                         <span class="input-group-text">{{ $language->name }}</span>
-                                        <input type="text" class="form-control" name="value[]">
-                                        <input type="text" class="form-control" name="language_code[]" value="{{ $language->code }}">
-                                        
+                                        <input type="hidden" name="language_code[]" value="{{ $language->code }}">
+                                        <input type="text" class="form-control" name="value[]"> 
                                     </div>
                                     @endforeach
                                     
