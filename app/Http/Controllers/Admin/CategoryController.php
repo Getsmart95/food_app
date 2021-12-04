@@ -6,11 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use App\Http\Controllers\FunctionController;
-use App\Models\Country;
-use App\Models\Language;
+use App\Models\Category;
 use App\Models\Translate;
+use App\Models\Language;
 
-class CountryController extends Controller
+class CategoryController extends Controller
 {
     private $otherFunc;
 
@@ -25,29 +25,22 @@ class CountryController extends Controller
     }
 
     public function all() {
-        $countries = Country::with([
+        $categories = Category::with([
             'translation' => function($query) { 
-            $query->where('language_code', App::getLocale())->get();}])->get();
-        
-        return view('countries.index',[
-            'countries' => $countries
-        ]);
-    }
-
-    public function getById($id) {
-        $translates = Translate::whereId($id)->get();
-        return view('countries.modals.edit', [
-            'id' => $id,
-            'translates' => $translates
+            $query->where('language_code', App::getLocale())->get();}])->get();;
+        // return $categories;
+        return view('categories.index', [
+            'categories' => $categories
         ]);
     }
 
     public function create() {
         $languages = Language::all();
-        return view('countries.modals.create', [
+        return view('categories.modals.create',[
             'languages' => $languages
         ]);
     }
+
 
     public function store(Request $request) {
         $nextVal = $this->otherFunc->getNextVal();
@@ -60,10 +53,18 @@ class CountryController extends Controller
             $translate = new Translate($data);
             $translate->save();
         }
-        $country = new Country();
+        $country = new Category();
         $country->name = $nextVal;
         $country->save();
-        return redirect()->route('countries');
+        return redirect()->route('categories');
+    }
+
+    public function getById($id) {
+        $translates = Translate::whereId($id)->get();
+        return view('categories.modals.edit', [
+            'id' => $id,
+            'translates' => $translates
+        ]);
     }
 
     public function update(Request $request) {
@@ -73,16 +74,12 @@ class CountryController extends Controller
                      ->update([
                 'value' => $value    
             ]);
-        }       
-        return redirect()->route('countries'); 
+        }     
+        return redirect()->route('categories');
     }
-
+    
     public function destroy($id) {
-        Country::destroy($id);
-        return redirect()->back();
+        Category::destroy($id);
+        return redirect()->route('categories');
     }
-
-
-
-
 }

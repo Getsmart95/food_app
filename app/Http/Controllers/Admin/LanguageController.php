@@ -14,6 +14,10 @@ class LanguageController extends Controller
         ]);
     }
 
+    public function create() {
+        return view('languages.modals.create');
+    }
+
     public function store(Request $request) {
         $language = new Language($request->all());
         $language->save();

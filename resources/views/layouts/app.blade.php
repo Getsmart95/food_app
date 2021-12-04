@@ -798,7 +798,7 @@
                             <span class="nav-text">Add-ons</span>
                             </a>
                             <ul aria-expanded="false">
-                                <li><a href="index-2.html">Categories</a></li>
+                                <li><a href="{{ Route('categories') }}">Categories</a></li>
                                 <li><a href="index-2.html">Cuisines</a></li>
                                 <li><a href="index-2.html">Diets</a></li>
                                 <li><a href="index-2.html">Ingredients Type</a></li>

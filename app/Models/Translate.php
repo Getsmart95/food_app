@@ -24,4 +24,14 @@ class Translate extends Model
     public function country() {
         return $this->hasOne('App\Models\Country');
     }
+
+    /**
+     * Get the user associated with the Translate
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function category(): HasOne
+    {
+        return $this->hasOne(Category::class);
+    }
 }

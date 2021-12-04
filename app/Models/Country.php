@@ -20,7 +20,13 @@ class Country extends Model
         'image_path'
     ];
 
-    public function translation() {
-        return $this->belongsTo('App\Models\Translate','name', 'id');
+    /**
+     * Get the user that owns the Country
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function translation()
+    {
+        return $this->belongsTo(Translate::class, 'name', 'id');
     }
 }
