@@ -17,7 +17,18 @@ class User extends Authenticatable
      *
      * @var string[]
      */
+
     protected $fillable = [
+        'is_superuser',
+        'first_name',
+        'last_name',
+        'is_staff',
+        'is_active',
+        'date_joined',
+        'birthdate',
+        'photo',
+        'last_ip',
+        'points',
         'username',
         'email',
         'password',

@@ -38,11 +38,21 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-
+        
         $user = User::create([
+            'is_superuser' => true,
+            'first_name' => 'admin',
+            'last_name' => 'admin',
+            'is_staff' => false,
+            'is_active' => true,
+            'date_joined' => '11.12.2021',
             'username' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'birthdate' => '11.12.2000',
+            'photo' => 'photo',
+            'last_ip' => '127.0.0.1',
+            'points' => '999'
         ]);
 
         event(new Registered($user));
