@@ -22,16 +22,18 @@
                                 <form method="post" action="{{ route('food.category.update', $id) }}" autocomplete="off">
                                     @csrf
                                     @method('PUT')
-                                    {{-- <label>Your vanity URL</label> --}}
-
-                                    @foreach ($translates as $translate)
+                                    @foreach ($languages as $language)
                                         <div class="input-group mb-3  input-success">
-                                            <span class="input-group-text">{{ $translate->language_code }}</span>
-                                            <input type="hidden" class="form-control" name="language_code[]" value="{{ $translate->language_code }}">
-                                            <input type="text" class="form-control" name="value[]" value="{{ $translate->value }}">
+											<span class="input-group-text">{{ $language->code }}</span>
+                                            <input type="hidden" class="form-control" name="id" value="{{ $id }}">
+                                            @empty($language->translation->language_code)
+                                                <input type="text" class="form-control" name="language_code[{{ $language->code }}]">
+                                            @endempty
+                                            @isset($language->translation->language_code)
+                                                <input type="text" class="form-control" name="language_code[{{ $language->code }}]" value="{{ $language->translation->value }}">
+                                            @endisset
                                         </div>
                                     @endforeach
-                                    
                                     <div class="col-16">
                                         <button type="submit" style="float: right" class="btn btn-primary mb-2">Save</button>
                                     </div>

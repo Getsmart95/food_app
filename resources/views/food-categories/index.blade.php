@@ -30,14 +30,14 @@
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-responsive-md">
+                                    <table class="table table-responsive-md" id="example" class="display" style="min-width: 845px">
                                         <thead>
                                             <tr>
                                                 <th style="width:80px;"><strong>#</strong></th>
-                                                <th><strong>CUISINE</strong></th>
-                                                <th><strong>CREATED</strong></th>
-                                                <th><strong>UPDATED</strong></th>
-                                                <th></th>
+                                                <th><strong>Category</strong></th>
+                                                <th><strong>Created</strong></th>
+                                                <th><strong>Updated</strong></th>
+                                                <th><strong>Action</strong></th>
                                             </tr>
                                         </thead>
                                         <tbody>

@@ -15,11 +15,11 @@
                 <div class="col-xl-6 col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Edit country</h4>
+                            <h4 class="card-title">Edit Food</h4>
                         </div>
                         <div class="card-body">
                             <div class="basic-form">
-                                <form method="post" action="{{ route('country.update', $id) }}" autocomplete="off">
+                                <form method="post" action="{{ route('food.update', $id) }}" autocomplete="off">
                                     @csrf
                                     @method('PUT')
                                     {{-- <label>Your vanity URL</label> --}}
@@ -35,7 +35,15 @@
                                             @endisset
                                         </div>
                                     @endforeach
-                                    
+                                    <label>Choose food category</label>
+                                    <div class="input-group mb-3 input-success">
+                                        <span class="input-group-text">Category</span>
+                                        <select class="default-select form-control wide" name="food_category_id">
+                                            @foreach ($categories as $category)
+                                            <option value ="{{ $category->name }}" {{ $category->name === $food->food_category_id  ? 'selected' : null }}>{{ $category->translation->value }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                     <div class="col-16">
                                         <button type="submit" style="float: right" class="btn btn-primary mb-2">Save</button>
                                     </div>

@@ -34,6 +34,8 @@
         <!-- FAVICONS ICON -->
         <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
         <link rel="stylesheet" href="vendor/chartist/css/chartist.min.css">
+        <link href="{{ asset('vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
+
         <link href="{{ asset('vendor/jquery-nice-select/css/nice-select.css') }}" rel="stylesheet">
         <!-- Style css -->
         <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
@@ -790,7 +792,7 @@
                             </a>
                             <ul aria-expanded="false">
                                 <li><a href="index.html">Recipes</a></li>
-                                <li><a href="index-2.html">Ingredients</a></li>
+                                <li><a href="{{ Route('foods') }}">Foods</a></li>
                             </ul>
                         </li>
                         <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
@@ -799,10 +801,10 @@
                             </a>
                             <ul aria-expanded="false">
                                 <li><a href="{{ Route('categories') }}">Categories</a></li>
-                                <li><a href="index-2.html">Cuisines</a></li>
-                                <li><a href="index-2.html">Diets</a></li>
-                                <li><a href="index-2.html">Ingredients Type</a></li>
-                                <li><a href="index-2.html">Energies</a></li>
+                                <li><a href="{{ Route('cuisines') }}">Cuisines</a></li>
+                                <li><a href="{{ Route('diets') }}">Diets</a></li>
+                                <li><a href="{{ Route('foods.categories') }}">Food categories</a></li>
+                                {{-- <li><a href="index-2.html">Energies</a></li> --}}
                             </ul>
                         </li>
                         <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
@@ -1438,22 +1440,25 @@
             Scripts
         ***********************************-->
         <!-- Required vendors -->
+        @section('scripts')
         <script src="{{ asset('vendor/global/global.min.js') }}"></script>
         <script src="{{ asset('vendor/chart.js/Chart.bundle.min.js') }}"></script>
         <script src="{{ asset('vendor/jquery-nice-select/js/jquery.nice-select.min.js') }}"></script>
         
-        
+
         <!-- Apex Chart -->
         <script src="{{ asset('vendor/apexchart/apexchart.js') }}"></script>
         
         <!-- Chart piety plugin files -->
         <script src="{{ asset('vendor/peity/jquery.peity.min.js') }}"></script>
-        
+        <script src="{{ asset('vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
+        <script src="{{ asset('assets/js/plugins-init/datatables.init.js') }}"></script>
         <!-- Dashboard 1 -->
         <script src="{{ asset('assets/js/dashboard/dashboard-1.js') }}"></script>
         <script src="{{ asset('assets/js/custom.min.js') }}"></script>
         <script src="{{ asset('assets/js/deznav-init.js') }}"></script>
         <script src="{{ asset('assets/js/demo.js') }}"></script>
         <script src="{{ asset('assets/js/styleSwitcher.js') }}"></script>
+        @show
     </body>
 </html>

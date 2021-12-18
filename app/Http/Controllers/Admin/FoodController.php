@@ -6,11 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use App\Http\Controllers\FunctionController;
+use App\Models\Food;
 use App\Models\FoodCategory;
 use App\Models\Translate;
 use App\Models\Language;
 
-class FoodCategoryController extends Controller
+class FoodController extends Controller
 {
     private $otherFunc;
 
@@ -25,19 +26,25 @@ class FoodCategoryController extends Controller
     }
 
     public function all() {
-        $categories = FoodCategory::with([
+        $foods = Food::with([
             'translation' => function($query) { 
-            $query->where('language_code', App::getLocale())->get();}])->get();;
-        // return $categories;
-        return view('food-categories.index', [
-            'categories' => $categories
+            $query->where('language_code', App::getLocale())->get();},
+            'food_category' => function($query) { 
+                $query->where('language_code', App::getLocale())->get();}])->get();
+        return view('foods.index', [
+            'foods' => $foods
         ]);
     }
 
     public function create() {
         $languages = Language::all();
-        return view('food-categories.modals.create',[
-            'languages' => $languages
+        $categories = FoodCategory::with([
+            'translation' => function($query) { 
+            $query->where('language_code', App::getLocale())->get();}])->get();
+
+        return view('foods.modals.create',[
+            'languages' => $languages,
+            'categories' => $categories
         ]);
     }
 
@@ -53,24 +60,30 @@ class FoodCategoryController extends Controller
             $translate = new Translate($data);
             $translate->save();
         }
-        $country = new FoodCategory();
-        $country->name = $nextVal;
-        $country->save();
-        return redirect()->route('foods.categories');
+        $food = new Food();
+        $food->name = $nextVal;
+        $food->food_category_id = $request->food_category_id;
+        $food->save();
+        return redirect()->route('foods');
     }
 
     public function getById($id) {
         $languages = Language::with(['translation' => function($query) use ($id){
-            $query->where('id', $id)->get();
-        }])->get();
-        
-        return view('food-categories.modals.edit', [
+            $query->where('id', $id)->get(); }])->get();
+        $categories = FoodCategory::with('translation')->get();
+        $food = Food::where('name', $id)->first();
+        // return $food;
+        // return $languages;
+        return view('foods.modals.edit', [
             'id' => $id,
-            'languages' => $languages
+            'languages' => $languages,
+            'categories' => $categories,
+            'food' => $food
         ]);
     }
 
     public function update(Request $request, $id) {
+        // return $request;
         $list = [];
         foreach($request->language_code as $key => $value){
             $list[] = [
@@ -81,12 +94,14 @@ class FoodCategoryController extends Controller
         }
 
         Translate::upsert($list, ['id', 'language_code'], ['value']);
-
-        return redirect()->route('foods.categories');
+        Food::where('name', $id)->update([
+            'food_category_id' => $request->food_category_id
+        ]);
+        return redirect()->route('foods');
     }
     
     public function destroy($id) {
-        FoodCategory::destroy($id);
-        return redirect()->route('foods.categories');
+        Food::destroy($id);
+        return redirect()->route('foods');
     }
 }

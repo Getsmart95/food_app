@@ -60,21 +60,26 @@ class CategoryController extends Controller
     }
 
     public function getById($id) {
-        $translates = Translate::whereId($id)->get();
+        $languages = Language::with(['translation' => function($query) use ($id){
+            $query->where('id', $id)->get();
+        }])->get();
         return view('categories.modals.edit', [
             'id' => $id,
-            'translates' => $translates
+            'languages' => $languages
         ]);
     }
 
-    public function update(Request $request) {
-        foreach($request->value as $key => $value){
-            Translate::whereId($request->id)
-                     ->where('language_code', $request->language_code[$key])
-                     ->update([
-                'value' => $value    
-            ]);
-        }     
+    public function update(Request $request, $id) {
+        $list = [];
+        foreach($request->language_code as $key => $value){
+            $list[] = [
+                'id' => $id,
+                'value' => $value,
+                'language_code' => $key
+            ];
+        }
+
+        Translate::upsert($list, ['id', 'language_code'], ['value']);
         return redirect()->route('categories');
     }
     

@@ -28,17 +28,20 @@ class CountryController extends Controller
         $countries = Country::with([
             'translation' => function($query) { 
             $query->where('language_code', App::getLocale())->get();}])->get();
-        
+        // return $countries;
         return view('countries.index',[
             'countries' => $countries
         ]);
     }
 
     public function getById($id) {
-        $translates = Translate::whereId($id)->get();
+        $languages = Language::with(['translation' => function($query) use ($id){
+            $query->where('id', $id)->get();
+        }])->get();
+
         return view('countries.modals.edit', [
             'id' => $id,
-            'translates' => $translates
+            'languages' => $languages
         ]);
     }
 
@@ -66,14 +69,19 @@ class CountryController extends Controller
         return redirect()->route('countries');
     }
 
-    public function update(Request $request) {
-        foreach($request->value as $key => $value){
-            Translate::whereId($request->id)
-                     ->where('language_code', $request->language_code[$key])
-                     ->update([
-                'value' => $value    
-            ]);
-        }       
+    public function update(Request $request, $id) {
+
+        $list = [];
+        foreach($request->language_code as $key => $value){
+            $list[] = [
+                'id' => $id,
+                'value' => $value,
+                'language_code' => $key
+            ];
+        }
+
+        Translate::upsert($list, ['id', 'language_code'], ['value']);
+
         return redirect()->route('countries'); 
     }
 

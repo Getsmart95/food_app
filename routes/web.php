@@ -59,6 +59,34 @@ Route::group([
         Route::post('categories/store', 'CategoryController@store')->name('category.store');
         Route::put('categories/update/{id}', 'CategoryController@update')->name('category.update');
         Route::delete('categories/destroy/{id}', 'CategoryController@destroy')->name('category.destroy');
+        // Cuisines
+        Route::get('cuisines', 'CuisineController@all')->name('cuisines');
+        Route::get('cuisines/create', 'CuisineController@create')->name('cuisine.create');
+        Route::get('cuisines/getById/{id}', 'CuisineController@getById')->name('cuisine.getById');
+        Route::post('cuisines/store', 'CuisineController@store')->name('cuisine.store');
+        Route::put('cuisines/update/{id}', 'CuisineController@update')->name('cuisine.update');
+        Route::delete('cuisines/destroy/{id}', 'CuisineController@destroy')->name('cuisine.destroy');
+        // Foods
+        Route::get('foods', 'FoodController@all')->name('foods');
+        Route::get('foods/create', 'FoodController@create')->name('food.create');
+        Route::get('foods/getById/{id}', 'FoodController@getById')->name('food.getById');
+        Route::post('foods/store', 'FoodController@store')->name('food.store');
+        Route::put('foods/update/{id}', 'FoodController@update')->name('food.update');
+        Route::delete('foods/destroy/{id}', 'FoodController@destroy')->name('food.destroy');
+        // Foods Category
+        Route::get('foods/categories', 'FoodCategoryController@all')->name('foods.categories');
+        Route::get('foods/categories/create', 'FoodCategoryController@create')->name('food.category.create');
+        Route::get('foods/categories/getById/{id}', 'FoodCategoryController@getById')->name('food.category.getById');
+        Route::post('foods/categories/store', 'FoodCategoryController@store')->name('food.category.store');
+        Route::put('foods/categories/update/{id}', 'FoodCategoryController@update')->name('food.category.update');
+        Route::delete('foods/categories/destroy/{id}', 'FoodCategoryController@destroy')->name('food.category.destroy');
+        // Diets
+        Route::get('diets', 'DietController@all')->name('diets');
+        Route::get('diets/create', 'DietController@create')->name('diet.create');
+        Route::get('diets/getById/{id}', 'DietController@getById')->name('diet.getById');
+        Route::post('diets/store', 'DietController@store')->name('diet.store');
+        Route::put('diets/update/{id}', 'DietController@update')->name('diet.update');
+        Route::delete('diets/destroy/{id}', 'DietController@destroy')->name('diet.destroy');
 
     });
 });

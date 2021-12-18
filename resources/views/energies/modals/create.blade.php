@@ -15,25 +15,21 @@
                 <div class="col-xl-6 col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Edit country</h4>
+                            <h4 class="card-title">Add country</h4>
                         </div>
                         <div class="card-body">
                             <div class="basic-form">
-                                <form method="post" action="{{ route('country.update', $id) }}" autocomplete="off">
+                                <form method="post" action="{{ route('country.store') }}" autocomplete="off">
                                     @csrf
-                                    @method('PUT')
+                                    {{-- @method('POST') --}}
                                     {{-- <label>Your vanity URL</label> --}}
+
                                     @foreach ($languages as $language)
-                                        <div class="input-group mb-3  input-success">
-											<span class="input-group-text">{{ $language->code }}</span>
-                                            <input type="hidden" class="form-control" name="id" value="{{ $id }}">
-                                            @empty($language->translation->language_code)
-                                                <input type="text" class="form-control" name="language_code[{{ $language->code }}]">
-                                            @endempty
-                                            @isset($language->translation->language_code)
-                                                <input type="text" class="form-control" name="language_code[{{ $language->code }}]" value="{{ $language->translation->value }}">
-                                            @endisset
-                                        </div>
+                                    <div class="input-group mb-3  input-success">
+                                        <span class="input-group-text">{{ $language->name }}</span>
+                                        <input type="hidden" name="language_code[]" value="{{ $language->code }}">
+                                        <input type="text" class="form-control" name="value[]"> 
+                                    </div>
                                     @endforeach
                                     
                                     <div class="col-16">
