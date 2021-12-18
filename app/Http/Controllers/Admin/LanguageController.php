@@ -19,29 +19,29 @@ class LanguageController extends Controller
     }
 
     public function store(Request $request) {
-        $language = new Language($request->all());
-        $language->save();
+        Language::create($request->all());
+        
         return redirect()->route('languages');
     }
 
-    public function getById($id) {
-        $language = Language::find($id);;
+    public function getById($iso) {
+        $language = Language::where('iso_code', $iso)->get();
         return view('languages.modals.edit', [
             'language' => $language
         ]);
     }
 
-    public function update(Request $request, $id) {
-        Language::whereId($id)->update([
+    public function update(Request $request, $iso) {
+        Language::where('iso_code', $iso)->update([
             'name' => $request->name,
-            'code' => $request->code
+            'iso_code' => $request->code
         ]);
 
         return redirect()->route('languages');
     }
 
-    public function destroy(Request $request, $id) {
-        Language::destroy($id);
+    public function destroy(Request $request, $iso) {
+        Language::where('iso_code', $iso)->delete();
         return redirect()->back();
     }
 }

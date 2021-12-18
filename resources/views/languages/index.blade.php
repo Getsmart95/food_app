@@ -26,26 +26,24 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Recent Payments Queue</h4>
+                                {{-- <h4 class="card-title">Recent Payments Queue</h4> --}}
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-responsive-md" id="example" class="display" style="min-width: 845px">
                                         <thead>
                                             <tr>
-                                                <th style="width:80px;"><strong>#</strong></th>
-                                                <th><strong>CODE</strong></th>
-                                                <th><strong>LANGUAGE</strong></th>
-                                                <th><strong>CREATED</strong></th>
-                                                <th><strong>UPDATED</strong></th>
-                                                <th><strong>ACTION</strong></th>
+                                                <th style="width:80px;"><strong>ISO</strong></th>
+                                                <th><strong>Language</strong></th>
+                                                <th><strong>Created</strong></th>
+                                                <th><strong>Updated</strong></th>
+                                                <th><strong>Action</strong></th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($languages as $language)
                                                 <tr>
-                                                    <td><strong>{{ $language->id }}</strong></td>
-                                                    <td>{{ $language->code}}</td>
+                                                    <td>{{ $language->iso_code}}</td>
                                                     <td>{{ $language->name}}</td>
                                                     <td>{{ $language->created_at}}</td>
                                                     <td>{{ $language->updated_at}}</td>
@@ -55,8 +53,8 @@
                                                                 <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"/><circle fill="#000000" cx="5" cy="12" r="2"/><circle fill="#000000" cx="12" cy="12" r="2"/><circle fill="#000000" cx="19" cy="12" r="2"/></g></svg>
                                                             </button>
                                                             <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="{{ Route('language.getById', ['id' => $language]) }}">Edit</a>
-                                                                <form method="post" action="{{ Route('language.destroy', $language) }}" autocomplete="off">
+                                                                <a class="dropdown-item" href="{{ Route('language.getByISO', ['iso' => $language->iso_code]) }}">Edit</a>
+                                                                <form method="post" action="{{ Route('language.destroy', $language->iso_code) }}" autocomplete="off">
                                                                     @csrf
                                                                     @method('DELETE')
                                                                 <button class="dropdown-item" type="submit">Delete</button>

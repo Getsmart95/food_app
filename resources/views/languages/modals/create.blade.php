@@ -25,7 +25,7 @@
                                         <span class="input-group-text">Language</span>
                                         <input type="text" name="name" class="form-control">
                                         <span class="input-group-text">Code</span>
-                                        <input type="text" name="code" class="form-control">
+                                        <input type="text" name="iso_code" class="form-control">
                                         <button class="btn btn-primary" type="submit">Save</button>
                                     </div>
                                 </form>

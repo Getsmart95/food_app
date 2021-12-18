@@ -9,6 +9,9 @@ class Language extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = null;
+    public $incrementing = false;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -16,7 +19,7 @@ class Language extends Model
      */
     protected $fillable = [
         'name',
-        'code'
+        'iso_code'
     ];
 
     /**

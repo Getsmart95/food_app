@@ -41,10 +41,10 @@ Route::group([
         // Languages
         Route::get('languages/', 'LanguageController@all')->name('languages');
         Route::get('languages/create', 'LanguageController@create')->name('language.create');
-        Route::get('languages/getById/{id}', 'LanguageController@getById')->name('language.getById');
+        Route::get('languages/getById/{iso}', 'LanguageController@getByISO')->name('language.getByISO');
         Route::post('languages/store', 'LanguageController@store')->name('language.store');
-        Route::put('languages/update/{id}', 'LanguageController@update')->name('language.update');
-        Route::delete('languages/destroy/{id}', 'LanguageController@destroy')->name('language.destroy');
+        Route::put('languages/update/{iso}', 'LanguageController@update')->name('language.update');
+        Route::delete('languages/destroy/{iso}', 'LanguageController@destroy')->name('language.destroy');
         // Countries
         Route::get('countries/', 'CountryController@all')->name('countries');
         Route::get('countries/create', 'CountryController@create')->name('country.create');
