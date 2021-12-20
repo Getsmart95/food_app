@@ -15,7 +15,7 @@
                 <div class="col-xl-6 col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Edit Cuisine</h4>
+                            <h4 class="card-title">Edit Food Category</h4>
                         </div>
                         <div class="card-body">
                             <div class="basic-form">
@@ -24,13 +24,12 @@
                                     @method('PUT')
                                     @foreach ($languages as $language)
                                         <div class="input-group mb-3  input-success">
-											<span class="input-group-text">{{ $language->code }}</span>
-                                            <input type="hidden" class="form-control" name="id" value="{{ $id }}">
-                                            @empty($language->translation->language_code)
-                                                <input type="text" class="form-control" name="language_code[{{ $language->code }}]">
+											<span class="input-group-text">{{ $language->iso_code }}</span>
+                                            @empty($language->translation)
+                                                <input type="text" class="form-control" name="language_id[{{ $language->iso_code }}]">
                                             @endempty
-                                            @isset($language->translation->language_code)
-                                                <input type="text" class="form-control" name="language_code[{{ $language->code }}]" value="{{ $language->translation->value }}">
+                                            @isset($language->translation)
+                                                <input type="text" class="form-control" name="language_id[{{ $language->iso_code }}]" value="{{ $language->translation->value }}">
                                             @endisset
                                         </div>
                                     @endforeach

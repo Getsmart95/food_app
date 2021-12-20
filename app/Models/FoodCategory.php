@@ -12,7 +12,7 @@ class FoodCategory extends Model
     protected $table = 'food_categories';
 
     protected $fillable = [
-        'name'
+        'food_category_key'
     ];
 
     /**
@@ -22,6 +22,6 @@ class FoodCategory extends Model
      */
     public function translation()
     {
-        return $this->belongsTo(Translate::class, 'name', 'id');
+        return $this->belongsTo(Translate::class, 'food_category_key', 'key');
     }
 }

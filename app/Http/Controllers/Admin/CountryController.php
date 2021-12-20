@@ -76,7 +76,7 @@ class CountryController extends Controller
     }
 
     public function update(Request $request, $id) {
-        // return $request;
+        return $request;
         foreach($request->language_id as $key => $value){
             $list[] = [
                 'key' => $id,
@@ -89,7 +89,7 @@ class CountryController extends Controller
         Country::where('country_key', $id)->update([
             'code' => $request->code
         ]);
-        
+
         return redirect()->route('countries'); 
     }
 
