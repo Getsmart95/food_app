@@ -19,7 +19,7 @@
                         </div>
                         <div class="card-body">
                             <div class="basic-form">
-                                <form method="post" action="{{ route('language.update', $language->iso_code) }}" autocomplete="off">
+                                <form method="post" action="{{ route('language.update', $iso) }}" autocomplete="off">
                                     @csrf
                                     @method('PUT')
                                     <div class="input-group mb-3">

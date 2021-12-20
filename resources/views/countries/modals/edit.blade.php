@@ -25,17 +25,19 @@
                                     {{-- <label>Your vanity URL</label> --}}
                                     @foreach ($languages as $language)
                                         <div class="input-group mb-3  input-success">
-											<span class="input-group-text">{{ $language->code }}</span>
-                                            <input type="hidden" class="form-control" name="id" value="{{ $id }}">
-                                            @empty($language->translation->language_code)
-                                                <input type="text" class="form-control" name="language_code[{{ $language->code }}]">
+											<span class="input-group-text">{{ $language->iso_code }}</span>
+                                            @empty($language->translation->language_id)
+                                                <input type="text" class="form-control" name="language_id[{{ $language->iso_code }}]">
                                             @endempty
-                                            @isset($language->translation->language_code)
-                                                <input type="text" class="form-control" name="language_code[{{ $language->code }}]" value="{{ $language->translation->value }}">
+                                            @isset($language->translation->language_id)
+                                                <input type="text" class="form-control" name="language_id[{{ $language->iso_code }}]" value="{{ $language->translation->value }}">
                                             @endisset
                                         </div>
                                     @endforeach
-                                    
+                                    <div class="input-group mb-3  input-success">
+                                        <span class="input-group-text">Code</span>
+                                        <input type="text" class="form-control" name="code" value="{{ $country->code }}">
+                                    </div>
                                     <div class="col-16">
                                         <button type="submit" style="float: right" class="btn btn-primary mb-2">Save</button>
                                     </div>

@@ -63,7 +63,7 @@
         <!--*******************
             Preloader start
         ********************-->
-        <div id="preloader">
+        {{-- <div id="preloader">
             <div class="gooey">
               <span class="dot"></span>
               <div class="dots">
@@ -72,11 +72,11 @@
                 <span></span>
               </div>
             </div>
-        </div>
+        </div> --}}
         <!--*******************
             Preloader end
         ********************-->
-        @yield('content')
+        
         <!--**********************************
             Main wrapper start
         ***********************************-->
@@ -617,7 +617,7 @@
             <!--**********************************
                 Chat box End
             ***********************************-->
-            
+            @yield('content')
             <!--**********************************
                 Header start
             ***********************************-->
@@ -1454,11 +1454,11 @@
         <script src="{{ asset('vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
         <script src="{{ asset('assets/js/plugins-init/datatables.init.js') }}"></script>
         <!-- Dashboard 1 -->
-        <script src="{{ asset('assets/js/dashboard/dashboard-1.js') }}"></script>
+        {{-- <script src="{{ asset('assets/js/dashboard/dashboard-1.js') }}"></script> --}}
         <script src="{{ asset('assets/js/custom.min.js') }}"></script>
         <script src="{{ asset('assets/js/deznav-init.js') }}"></script>
-        <script src="{{ asset('assets/js/demo.js') }}"></script>
-        <script src="{{ asset('assets/js/styleSwitcher.js') }}"></script>
+        {{-- <script src="{{ asset('assets/js/demo.js') }}"></script> --}}
+        {{-- <script src="{{ asset('assets/js/styleSwitcher.js') }}"></script> --}}
         @show
     </body>
 </html>

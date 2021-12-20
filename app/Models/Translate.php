@@ -14,10 +14,10 @@ class Translate extends Model
      * @var array
      */
     protected $fillable = [
-        'id',
+        'key',
         'value',
         'description',
-        'language_code'
+        'language_id'
     ];
 
 

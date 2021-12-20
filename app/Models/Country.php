@@ -16,7 +16,8 @@ class Country extends Model
      */
 
     protected $fillable = [
-        'name',
+        'country_key',
+        'code',
         'image_path'
     ];
 
@@ -27,6 +28,6 @@ class Country extends Model
      */
     public function translation()
     {
-        return $this->belongsTo(Translate::class, 'name', 'id');
+        return $this->belongsTo(Translate::class, 'country_key', 'key');
     }
 }

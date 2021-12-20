@@ -39,6 +39,6 @@ class Language extends Model
      */
     public function translation()
     {
-        return $this->belongsTo(Translate::class, 'code', 'language_code');
+        return $this->belongsTo(Translate::class, 'iso_code', 'language_id');
     }
 }

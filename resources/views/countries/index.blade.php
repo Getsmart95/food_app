@@ -26,7 +26,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Recent Payments Queue</h4>
+                                {{-- <h4 class="card-title">Recent Payments Queue</h4> --}}
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -35,6 +35,7 @@
                                             <tr>
                                                 <th style="width:80px;"><strong>#</strong></th>
                                                 <th><strong>Country</strong></th>
+                                                <th><strong>Code</strong></th>
                                                 <th><strong>Created</strong></th>
                                                 <th><strong>Updated</strong></th>
                                                 <th><strong>Image</strong></th>
@@ -44,27 +45,29 @@
                                         <tbody>
                                             @foreach ($countries as $country)
                                                 <tr>
-                                                    <td><strong>{{ $country->id }}</strong></td>
-                                                    <td>{{ $country->translation->value }}</td>
-                                                    {{-- <td>{{ $country->translation->language_code }}</td> --}}
-                                                    <td>{{ $country->created_at}}</td>
-                                                    <td>{{ $country->updated_at }}</td>
-                                                    <td>{{ $country->image_path}}</td>
-                                                    <td>
-                                                        <div class="dropdown">
-                                                            <button type="button" class="btn btn-success light sharp" data-bs-toggle="dropdown">
-                                                                <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"/><circle fill="#000000" cx="5" cy="12" r="2"/><circle fill="#000000" cx="12" cy="12" r="2"/><circle fill="#000000" cx="19" cy="12" r="2"/></g></svg>
-                                                            </button>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="{{ Route('country.getById', ['id' => $country->name]) }}">Edit</a>
-                                                                <form method="post" action="{{ Route('country.destroy', $country) }}" autocomplete="off">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                <button class="dropdown-item" type="submit">Delete</button>
-                                                                </form>
+                                                    @isset($country->translation)
+                                                        <td><strong>{{ $country->id }}</strong></td>
+                                                        <td>{{ $country->translation->value }}</td>
+                                                        <td>{{ $country->code}}</td>
+                                                        <td>{{ $country->created_at}}</td>
+                                                        <td>{{ $country->updated_at }}</td>
+                                                        <td>{{ $country->image_path}}</td>
+                                                        <td>
+                                                            <div class="dropdown">
+                                                                <button type="button" class="btn btn-success light sharp" data-bs-toggle="dropdown">
+                                                                    <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"/><circle fill="#000000" cx="5" cy="12" r="2"/><circle fill="#000000" cx="12" cy="12" r="2"/><circle fill="#000000" cx="19" cy="12" r="2"/></g></svg>
+                                                                </button>
+                                                                <div class="dropdown-menu">
+                                                                    <a class="dropdown-item" href="{{ Route('country.getById', ['id' => $country->country_key]) }}">Edit</a>
+                                                                    <form method="post" action="{{ Route('country.destroy', ['id' => $country->country_key]) }}" autocomplete="off">
+                                                                        @csrf
+                                                                        @method('DELETE')
+                                                                    <button class="dropdown-item" type="submit">Delete</button>
+                                                                    </form>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </td>
+                                                        </td>
+                                                    @endisset
                                                 </tr>
                                             @endforeach
 											

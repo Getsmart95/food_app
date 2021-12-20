@@ -24,9 +24,11 @@ class LanguageController extends Controller
         return redirect()->route('languages');
     }
 
-    public function getById($iso) {
-        $language = Language::where('iso_code', $iso)->get();
+    public function getByISO($iso) {
+        $language = Language::where('iso_code', $iso)->first();
+        // return $language;
         return view('languages.modals.edit', [
+            'iso' => $iso,
             'language' => $language
         ]);
     }
@@ -34,7 +36,7 @@ class LanguageController extends Controller
     public function update(Request $request, $iso) {
         Language::where('iso_code', $iso)->update([
             'name' => $request->name,
-            'iso_code' => $request->code
+            'iso_code' => $request->iso_code
         ]);
 
         return redirect()->route('languages');

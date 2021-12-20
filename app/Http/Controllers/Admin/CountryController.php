@@ -9,6 +9,7 @@ use App\Http\Controllers\FunctionController;
 use App\Models\Country;
 use App\Models\Language;
 use App\Models\Translate;
+use Illuminate\Support\Str;
 
 class CountryController extends Controller
 {
@@ -27,7 +28,7 @@ class CountryController extends Controller
     public function all() {
         $countries = Country::with([
             'translation' => function($query) { 
-            $query->where('language_code', App::getLocale())->get();}])->get();
+            $query->where('language_id', App::getLocale())->get();}])->get();
         // return $countries;
         return view('countries.index',[
             'countries' => $countries
@@ -36,12 +37,14 @@ class CountryController extends Controller
 
     public function getById($id) {
         $languages = Language::with(['translation' => function($query) use ($id){
-            $query->where('id', $id)->get();
+            $query->where('key', $id)->get();
         }])->get();
 
+        $country = Country::where('country_key', $id)->first();
         return view('countries.modals.edit', [
             'id' => $id,
-            'languages' => $languages
+            'languages' => $languages,
+            'country' => $country
         ]);
     }
 
@@ -53,40 +56,46 @@ class CountryController extends Controller
     }
 
     public function store(Request $request) {
-        $nextVal = $this->otherFunc->getNextVal();
+        $uuid = Str::uuid();
         foreach($request->value as $key => $value){
             $data = [
-                'id' => $nextVal,
+                'key' => $uuid,
                 'value' => $value,
-                'language_code' => $request->language_code[$key]
+                'language_id' => $request->language_id[$key]
             ];
-            $translate = new Translate($data);
-            $translate->save();
+            Translate::create($data);
         }
-        $country = new Country();
-        $country->name = $nextVal;
-        $country->save();
+
+        $data = [
+            'country_key' => $uuid,
+            'code' => $request->code
+        ];
+        Country::create($data);
+
         return redirect()->route('countries');
     }
 
     public function update(Request $request, $id) {
-
-        $list = [];
-        foreach($request->language_code as $key => $value){
+        // return $request;
+        foreach($request->language_id as $key => $value){
             $list[] = [
-                'id' => $id,
+                'key' => $id,
                 'value' => $value,
-                'language_code' => $key
+                'language_id' => $key
             ];
         }
-
-        Translate::upsert($list, ['id', 'language_code'], ['value']);
-
+        // return $list;
+        Translate::upsert($list, ['key', 'language_id'], ['value']);
+        Country::where('country_key', $id)->update([
+            'code' => $request->code
+        ]);
+        
         return redirect()->route('countries'); 
     }
 
-    public function destroy($id) {
-        Country::destroy($id);
+    public function destroy($id, Request $request) {
+        Country::where('country_key', $id)->delete();
+        Translate::where('key', $id)->delete();
         return redirect()->back();
     }
 

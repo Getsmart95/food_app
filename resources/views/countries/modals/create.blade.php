@@ -27,11 +27,14 @@
                                     @foreach ($languages as $language)
                                     <div class="input-group mb-3  input-success">
                                         <span class="input-group-text">{{ $language->name }}</span>
-                                        <input type="hidden" name="language_code[]" value="{{ $language->code }}">
-                                        <input type="text" class="form-control" name="value[]"> 
+                                        <input type="hidden" name="language_id[]" value="{{ $language->iso_code }}">
+                                        <input type="text" class="form-control" name="value[]">
                                     </div>
                                     @endforeach
-                                    
+                                    <div class="input-group mb-3  input-success">
+                                        <span class="input-group-text">Code</span>
+                                        <input type="text" class="form-control" name="code"> 
+                                    </div>
                                     <div class="col-16">
                                         <button type="submit" style="float: right" class="btn btn-primary mb-2">Save</button>
                                     </div>
