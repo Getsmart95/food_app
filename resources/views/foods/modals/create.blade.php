@@ -26,7 +26,7 @@
                                     @foreach ($languages as $language)
                                     <div class="input-group mb-3  input-success">
                                         <span class="input-group-text">{{ $language->name }}</span>
-                                        <input type="hidden" name="language_code[]" value="{{ $language->code }}">
+                                        <input type="hidden" name="language_id[]" value="{{ $language->iso_code }}">
                                         <input type="text" class="form-control" name="value[]"> 
                                     </div>
                                     @endforeach
@@ -35,9 +35,9 @@
                                     <label>Choose food category</label>
                                     <div class="input-group mb-3 input-success">
                                         <span class="input-group-text">Category</span>
-                                        <select class="default-select form-control wide" name="food_category_id">
+                                        <select class="default-select form-control wide" name="food_category_key">
                                             @foreach ($categories as $category)
-                                            <option value ="{{ $category->name }}">{{ $category->translation->value }}</option>
+                                            <option value ="{{ $category->food_category_key }}">{{ $category->translation->value }}</option>
                                             @endforeach
                                         </select>
                                     </div>

@@ -44,26 +44,28 @@
                                         <tbody>
                                             @foreach ($foods as $food)
                                                 <tr>
-                                                    <td><strong>{{ $food->id }}</strong></td>
-                                                    <td>{{ $food->translation->value }}</td>
-                                                    <td>{{ $food->food_category->value }}</td>
-                                                    <td>{{ $food->created_at}}</td>
-                                                    <td>{{ $food->updated_at }}</td>
-                                                    <td>
-                                                        <div class="dropdown">
-                                                            <button type="button" class="btn btn-success light sharp" data-bs-toggle="dropdown">
-                                                                <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"/><circle fill="#000000" cx="5" cy="12" r="2"/><circle fill="#000000" cx="12" cy="12" r="2"/><circle fill="#000000" cx="19" cy="12" r="2"/></g></svg>
-                                                            </button>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="{{ Route('food.getById', ['id' => $food->name]) }}">Edit</a>
-                                                                <form method="post" action="{{ Route('food.destroy', $food) }}" autocomplete="off">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                <button class="dropdown-item" type="submit">Delete</button>
-                                                                </form>
+                                                    @isset($food->translation)
+                                                        <td><strong>{{ $food->id }}</strong></td>
+                                                        <td>{{ $food->translation->value }}</td>
+                                                        <td>{{ $food->food_category->value }}</td>
+                                                        <td>{{ $food->created_at}}</td>
+                                                        <td>{{ $food->updated_at }}</td>
+                                                        <td>
+                                                            <div class="dropdown">
+                                                                <button type="button" class="btn btn-success light sharp" data-bs-toggle="dropdown">
+                                                                    <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"/><circle fill="#000000" cx="5" cy="12" r="2"/><circle fill="#000000" cx="12" cy="12" r="2"/><circle fill="#000000" cx="19" cy="12" r="2"/></g></svg>
+                                                                </button>
+                                                                <div class="dropdown-menu">
+                                                                    <a class="dropdown-item" href="{{ Route('food.getById', ['id' => $food->food_key]) }}">Edit</a>
+                                                                    <form method="post" action="{{ Route('food.destroy', ['id' => $food->food_key]) }}" autocomplete="off">
+                                                                        @csrf
+                                                                        @method('DELETE')
+                                                                    <button class="dropdown-item" type="submit">Delete</button>
+                                                                    </form>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </td>
+                                                        </td>
+                                                    @endisset
                                                 </tr>
                                             @endforeach
 											

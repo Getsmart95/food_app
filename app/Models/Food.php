@@ -10,8 +10,10 @@ class Food extends Model
     use HasFactory;
 
     protected $table = 'foods';
+
     protected $fillable = [
-        'name'
+        'food_key',
+        'food_category_key'
     ];
 
     /**
@@ -21,7 +23,7 @@ class Food extends Model
      */
     public function translation()
     {
-        return $this->belongsTo(Translate::class, 'name', 'id');
+        return $this->belongsTo(Translate::class, 'food_key', 'key');
     }
     /**
      * Get the user that owns the food
@@ -30,12 +32,12 @@ class Food extends Model
      */
     public function food_category()
     {
-        return $this->belongsTo(Translate::class, 'food_category_id', 'id');
+        return $this->belongsTo(Translate::class, 'food_category_key', 'key');
     }
 
     public function food()
     {
-        return $this->belongsTo(FoodCategory::class, 'food_category_id', 'id');
+        return $this->belongsTo(FoodCategory::class, 'food_category_key', 'id');
     }
 
     public function diet_foods()

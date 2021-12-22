@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use App\Http\Controllers\FunctionController;
+use Illuminate\Support\Str;
 use App\Models\Diet;
 use App\Models\Food;
 use App\Models\DietFood;
@@ -29,7 +30,7 @@ class DietController extends Controller
     public function all() {
         $diets = Diet::with([
             'translation' => function($query) { 
-            $query->where('language_code', App::getLocale())->get();}])->get();;
+            $query->where('language_id', App::getLocale())->get();}])->get();;
         return view('diets.index', [
             'diets' => $diets
         ]);
@@ -39,9 +40,10 @@ class DietController extends Controller
         $languages = Language::all();
         $foods = Food::with([
             'translation' => function($query) { 
-            $query->where('language_code', App::getLocale())->get();},
+            $query->where('language_id', App::getLocale())->get();},
             'food_category' => function($query) { 
-                $query->where('language_code', App::getLocale())->get();}])->get();
+                $query->where('language_id', App::getLocale())->get();}])->get();
+        return $foods;
         return view('diets.modals.create',[
             'languages' => $languages,
             'foods' => $foods

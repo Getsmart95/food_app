@@ -25,22 +25,22 @@
                                     {{-- <label>Your vanity URL</label> --}}
                                     @foreach ($languages as $language)
                                         <div class="input-group mb-3  input-success">
-											<span class="input-group-text">{{ $language->code }}</span>
+											<span class="input-group-text">{{ $language->iso_code }}</span>
                                             <input type="hidden" class="form-control" name="id" value="{{ $id }}">
-                                            @empty($language->translation->language_code)
-                                                <input type="text" class="form-control" name="language_code[{{ $language->code }}]">
+                                            @empty($language->translation->language_id)
+                                                <input type="text" class="form-control" name="value[{{ $language->iso_code }}]">
                                             @endempty
-                                            @isset($language->translation->language_code)
-                                                <input type="text" class="form-control" name="language_code[{{ $language->code }}]" value="{{ $language->translation->value }}">
+                                            @isset($language->translation->language_id)
+                                                <input type="text" class="form-control" name="value[{{ $language->iso_code }}]" value="{{ $language->translation->value }}">
                                             @endisset
                                         </div>
                                     @endforeach
                                     <label>Choose food category</label>
                                     <div class="input-group mb-3 input-success">
                                         <span class="input-group-text">Category</span>
-                                        <select class="default-select form-control wide" name="food_category_id">
+                                        <select class="default-select form-control wide" name="food_category_key">
                                             @foreach ($categories as $category)
-                                            <option value ="{{ $category->name }}" {{ $category->name === $food->food_category_id  ? 'selected' : null }}>{{ $category->translation->value }}</option>
+                                            <option value ="{{ $category->food_category_key }}" {{ $category->food_category_key === $food->food_category_key  ? 'selected' : null }}>{{ $category->translation->value }}</option>
                                             @endforeach
                                         </select>
                                     </div>

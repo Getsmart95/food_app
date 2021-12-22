@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use App\Http\Controllers\FunctionController;
+use Illuminate\Support\Str;
 use App\Models\Food;
 use App\Models\FoodCategory;
 use App\Models\Translate;
@@ -28,9 +29,9 @@ class FoodController extends Controller
     public function all() {
         $foods = Food::with([
             'translation' => function($query) { 
-            $query->where('language_code', App::getLocale())->get();},
+            $query->where('language_id', App::getLocale())->get();},
             'food_category' => function($query) { 
-                $query->where('language_code', App::getLocale())->get();}])->get();
+                $query->where('language_id', App::getLocale())->get();}])->get();
         return view('foods.index', [
             'foods' => $foods
         ]);
@@ -40,8 +41,8 @@ class FoodController extends Controller
         $languages = Language::all();
         $categories = FoodCategory::with([
             'translation' => function($query) { 
-            $query->where('language_code', App::getLocale())->get();}])->get();
-
+            $query->where('language_id', App::getLocale())->get();}])->get();
+                
         return view('foods.modals.create',[
             'languages' => $languages,
             'categories' => $categories
@@ -50,28 +51,32 @@ class FoodController extends Controller
 
 
     public function store(Request $request) {
-        $nextVal = $this->otherFunc->getNextVal();
+        // return $request;
+        $uuid = Str::uuid();
         foreach($request->value as $key => $value){
             $data = [
-                'id' => $nextVal,
+                'key' => $uuid,
                 'value' => $value,
-                'language_code' => $request->language_code[$key]
+                'language_id' => $request->language_id[$key]
             ];
-            $translate = new Translate($data);
-            $translate->save();
+            Translate::create($data);
         }
-        $food = new Food();
-        $food->name = $nextVal;
-        $food->food_category_id = $request->food_category_id;
-        $food->save();
+
+        $data = [
+            'food_key' => $uuid,
+            'food_category_key' => $request->food_category_key
+        ];
+        
+        Food::create($data);
+
         return redirect()->route('foods');
     }
 
     public function getById($id) {
         $languages = Language::with(['translation' => function($query) use ($id){
-            $query->where('id', $id)->get(); }])->get();
+            $query->where('key', $id)->get(); }])->get();
         $categories = FoodCategory::with('translation')->get();
-        $food = Food::where('name', $id)->first();
+        $food = Food::where('food_key', $id)->first();
         // return $food;
         // return $languages;
         return view('foods.modals.edit', [
@@ -85,23 +90,25 @@ class FoodController extends Controller
     public function update(Request $request, $id) {
         // return $request;
         $list = [];
-        foreach($request->language_code as $key => $value){
+        foreach($request->value as $key => $value){
             $list[] = [
-                'id' => $id,
+                'key' => $id,
                 'value' => $value,
-                'language_code' => $key
+                'language_id' => $key
             ];
         }
 
-        Translate::upsert($list, ['id', 'language_code'], ['value']);
-        Food::where('name', $id)->update([
-            'food_category_id' => $request->food_category_id
+        Translate::upsert($list, ['key', 'language_id'], ['value']);
+        Food::where('food_key', $id)->update([
+            'food_category_key' => $request->food_category_key
         ]);
         return redirect()->route('foods');
     }
     
     public function destroy($id) {
-        Food::destroy($id);
+        Translate::where('key', $id)->delete();
+        Food::where('food_key', $id)->delete();
+
         return redirect()->route('foods');
     }
 }
