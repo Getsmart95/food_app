@@ -43,25 +43,27 @@
                                         <tbody>
                                             @foreach ($categories as $category)
                                                 <tr>
-                                                    <td><strong>{{ $category->id }}</strong></td>
-                                                    <td>{{ $category->translation->value }}</td>
-                                                    <td>{{ $category->created_at}}</td>
-                                                    <td>{{ $category->updated_at }}</td>
-                                                    <td>
-                                                        <div class="dropdown">
-                                                            <button type="button" class="btn btn-success light sharp" data-bs-toggle="dropdown">
-                                                                <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"/><circle fill="#000000" cx="5" cy="12" r="2"/><circle fill="#000000" cx="12" cy="12" r="2"/><circle fill="#000000" cx="19" cy="12" r="2"/></g></svg>
-                                                            </button>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="{{ Route('category.getById', ['id' => $category->name]) }}">Edit</a>
-                                                                <form method="post" action="{{ Route('category.destroy', $category) }}" autocomplete="off">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                <button class="dropdown-item" type="submit">Delete</button>
-                                                                </form>
+                                                    @isset($category->translation)
+                                                        <td><strong>{{ $category->id }}</strong></td>
+                                                        <td>{{ $category->translation->value }}</td>
+                                                        <td>{{ $category->created_at}}</td>
+                                                        <td>{{ $category->updated_at }}</td>
+                                                        <td>
+                                                            <div class="dropdown">
+                                                                <button type="button" class="btn btn-success light sharp" data-bs-toggle="dropdown">
+                                                                    <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"/><circle fill="#000000" cx="5" cy="12" r="2"/><circle fill="#000000" cx="12" cy="12" r="2"/><circle fill="#000000" cx="19" cy="12" r="2"/></g></svg>
+                                                                </button>
+                                                                <div class="dropdown-menu">
+                                                                    <a class="dropdown-item" href="{{ Route('category.getById', ['id' => $category->category_key]) }}">Edit</a>
+                                                                    <form method="post" action="{{ Route('category.destroy', ['id' => $category->category_key]) }}" autocomplete="off">
+                                                                        @csrf
+                                                                        @method('DELETE')
+                                                                    <button class="dropdown-item" type="submit">Delete</button>
+                                                                    </form>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </td>
+                                                        </td>
+                                                    @endisset
                                                 </tr>
                                             @endforeach
 											

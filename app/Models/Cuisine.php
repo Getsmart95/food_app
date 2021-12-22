@@ -10,7 +10,7 @@ class Cuisine extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name'
+        'cuisine_key'
     ];
 
     /**
@@ -20,6 +20,6 @@ class Cuisine extends Model
      */
     public function translation()
     {
-        return $this->belongsTo(Translate::class, 'name', 'id');
+        return $this->belongsTo(Translate::class, 'cuisine_key', 'key');
     }
 }

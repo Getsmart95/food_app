@@ -732,7 +732,7 @@
                                 <li class="nav-item dropdown notification_dropdown">
                                         <select class="me-sm-2 default-select wide" onchange="window.location.href=this.options[this.selectedIndex].value" name="lang" id="inlineFormCustomSelect">
                                             @foreach ($languages as $language)
-                                                <option value ="{{ Route('language.switch', ['lang' => $language->iso_code]) }}" {{App::getLocale() === $language->code ? 'selected' : null}}>{{$language->name}}</option>
+                                                <option value ="{{ Route('language.switch', ['lang' => $language->iso_code]) }}" {{App::getLocale() === $language->iso_code ? 'selected' : null}}>{{$language->name}}</option>
                                             @endforeach
                                         </select>
                                 </li>

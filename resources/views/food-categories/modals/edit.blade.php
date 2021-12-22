@@ -26,10 +26,10 @@
                                         <div class="input-group mb-3  input-success">
 											<span class="input-group-text">{{ $language->iso_code }}</span>
                                             @empty($language->translation)
-                                                <input type="text" class="form-control" name="language_id[{{ $language->iso_code }}]">
+                                                <input type="text" class="form-control" name="value[{{ $language->iso_code }}]">
                                             @endempty
                                             @isset($language->translation)
-                                                <input type="text" class="form-control" name="language_id[{{ $language->iso_code }}]" value="{{ $language->translation->value }}">
+                                                <input type="text" class="form-control" name="value[{{ $language->iso_code }}]" value="{{ $language->translation->value }}">
                                             @endisset
                                         </div>
                                     @endforeach

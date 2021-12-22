@@ -25,13 +25,13 @@
                                     {{-- <label>Your vanity URL</label> --}}
                                     @foreach ($languages as $language)
                                         <div class="input-group mb-3  input-success">
-                                            <span class="input-group-text">{{ $language->code }}</span>
+                                            <span class="input-group-text">{{ $language->iso_code }}</span>
                                             <input type="hidden" class="form-control" name="id" value="{{ $id }}">
-                                            @empty($language->translation->language_code)
-                                                <input type="text" class="form-control" name="language_code[{{ $language->code }}]">
+                                            @empty($language->translation->language_id)
+                                                <input type="text" class="form-control" name="value[{{ $language->iso_code }}]">
                                             @endempty
-                                            @isset($language->translation->language_code)
-                                                <input type="text" class="form-control" name="language_code[{{ $language->code }}]" value="{{ $language->translation->value }}">
+                                            @isset($language->translation->language_id)
+                                                <input type="text" class="form-control" name="value[{{ $language->iso_code }}]" value="{{ $language->translation->value }}">
                                             @endisset
                                         </div>
                                     @endforeach

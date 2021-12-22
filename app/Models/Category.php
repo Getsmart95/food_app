@@ -10,7 +10,7 @@ class Category extends Model
     use HasFactory;
     
     protected $fillable = [
-        'name'
+        'category_key'
     ];
 
     /**
@@ -19,7 +19,7 @@ class Category extends Model
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function translation() {
-        return $this->belongsTo(Translate::class,'name', 'id');
+        return $this->belongsTo(Translate::class,'category_key', 'key');
     }
     
 }
