@@ -26,8 +26,8 @@
 
                                     @foreach ($languages as $language)
                                     <div class="input-group mb-3  input-success">
-                                        <span class="input-group-text">{{ $language->name }}</span>
-                                        <input type="hidden" name="language_code[]" value="{{ $language->code }}">
+                                        <span class="input-group-text">{{ $language->iso_code }}</span>
+                                        <input type="hidden" name="language_id[]" value="{{ $language->iso_code }}">
                                         <input type="text" class="form-control" name="value[]"> 
                                     </div>
                                     @endforeach
