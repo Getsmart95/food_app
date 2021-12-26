@@ -30,7 +30,7 @@
                                     @foreach ($languages as $language)
                                                 <div class="input-group mb-3  input-success">
                                                     <span class="input-group-text">{{ $language->name }}</span>
-                                                    <input type="hidden" name="language_code[]" value="{{ $language->code }}">
+                                                    <input type="hidden" name="language_id[]" value="{{ $language->iso_code }}">
                                                     <input type="text" class="form-control" name="value[]"> 
                                                 </div>
                                                 @endforeach
@@ -41,18 +41,10 @@
                                         <div class="card-body">
                                             
                                             <div class="table-responsive">
-                                                
-                                                {{-- <div class="input-group mb-3 input-success">
-                                                    <span class="input-group-text">Sort By...</span>
-                                                    <select class="default-select form-control wide" name="food_category_id">
-                                                        <option value ="">Овощи</option>
-                                                    </select>
-                                                </div> --}}
-                                               
                                                 <table id="example" class="display" >
                                                     <thead>
                                                         <tr>
-                                                            <th style="width:40px;"><strong>#</strong></th>
+                                                            <th style="width:2%;"><strong>#</strong></th>
                                                             <th>Category</th>
                                                             <th>Food</th>
                                                             <th>Exclude</th>
@@ -65,7 +57,7 @@
                                                             <td>{{ $food->food_category->value }}</td>
                                                             <td>{{ $food->translation->value }}</td>
                                                             <td><div class="form-check custom-checkbox mb-3 checkbox-warning check-xl">
-                                                                <input type="checkbox" name="exclude[]" value={{ $food->translation->id }} class="form-check-input"  id="customCheckBox9">
+                                                                <input type="checkbox" name="exclude[]" value={{ $food->translation->key }} class="form-check-input"  id="customCheckBox9">
                                                                 <label class="form-check-label" for="customCheckBox9"></label>
                                                             </div></td>
                                                         </tr>

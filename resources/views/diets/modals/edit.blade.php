@@ -29,13 +29,13 @@
                                     {{-- <label>Your vanity URL</label> --}}
                                     @foreach ($languages as $language)
                                         <div class="input-group mb-3  input-success">
-                                            <span class="input-group-text">{{ $language->code }}</span>
+                                            <span class="input-group-text">{{ $language->iso_code }}</span>
                                             <input type="hidden" class="form-control" name="id" value="{{ $id }}">
-                                            @empty($language->translation->language_code)
-                                                <input type="text" class="form-control" name="language_code[{{ $language->code }}]">
+                                            @empty($language->translation->language_id)
+                                                <input type="text" class="form-control" name="language_id[{{ $language->iso_code }}]">
                                             @endempty
-                                            @isset($language->translation->language_code)
-                                                <input type="text" class="form-control" name="language_code[{{ $language->code }}]" value="{{ $language->translation->value }}">
+                                            @isset($language->translation->language_id)
+                                                <input type="text" class="form-control" name="language_id[{{ $language->iso_code }}]" value="{{ $language->translation->value }}">
                                             @endisset
                                         </div>
                                     @endforeach
@@ -61,13 +61,19 @@
                                                             <td>{{ $food->food_category->value }}</td>
                                                             <td>{{ $food->translation->value }}</td>
                                                             <td><div class="form-check custom-checkbox mb-3 checkbox-warning check-xl">
-                                                       
-                                                                @empty($food->diet_foods)
-                                                                <input type="checkbox" name="exclude[]" value={{ $food->translation->id }} class="form-check-input"  id="customCheckBox9">
-                                                                @endempty
-                                                                @isset($food->diet_foods)
-                                                                <input type="checkbox" name="exclude[]" value={{ $food->translation->id }} checked class="form-check-input"  id="customCheckBox9">
-                                                                @endisset
+                                                                @foreach ($diet_foods as $diet_food)
+                                                                    {{-- @empty($diet_foods)
+                                                                    @endempty --}}
+                                                                    @if ($diet_food->food_key == $food->food_key)
+                                                                        <input type="checkbox" name="exclude[]" value={{ $food->food_key }} checked class="form-check-input"  id="customCheckBox9">
+                                                                        @break
+                                                                    @elseif ($diet_foods->last() === $diet_food)
+                                                                        <input type="checkbox" name="exclude[]" value={{ $food->food_key }} class="form-check-input"  id="customCheckBox9">
+                                                                        @break
+                                                                    @endif
+                                                                    
+                                                                @endforeach
+                                                                
                                                               
                                                                 <label class="form-check-label" for="customCheckBox9"></label>
                                                             </div></td>

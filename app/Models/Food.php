@@ -42,6 +42,6 @@ class Food extends Model
 
     public function diet_foods()
     {
-        return $this->belongsTo(DietFood::class, 'name', 'diet_food');
+        return $this->belongsTo(DietFood::class, 'diet_key', 'diet_key');
     }
 }

@@ -30,7 +30,8 @@ class DietController extends Controller
     public function all() {
         $diets = Diet::with([
             'translation' => function($query) { 
-            $query->where('language_id', App::getLocale())->get();}])->get();;
+            $query->where('language_id', App::getLocale())->get();}])->get();
+                
         return view('diets.index', [
             'diets' => $diets
         ]);
@@ -43,7 +44,7 @@ class DietController extends Controller
             $query->where('language_id', App::getLocale())->get();},
             'food_category' => function($query) { 
                 $query->where('language_id', App::getLocale())->get();}])->get();
-        return $foods;
+        // return $foods;
         return view('diets.modals.create',[
             'languages' => $languages,
             'foods' => $foods
@@ -52,24 +53,27 @@ class DietController extends Controller
 
 
     public function store(Request $request) {
-        $nextVal = $this->otherFunc->getNextVal();
+        // return $request;
+        $uuid = Str::uuid();
         foreach($request->value as $key => $value){
             $data = [
-                'id' => $nextVal,
+                'key' => $uuid,
                 'value' => $value,
-                'language_code' => $request->language_code[$key]
+                'language_id' => $request->language_id[$key]
             ];
-            $translate = new Translate($data);
-            $translate->save();
+            Translate::create($data);
         }
         
-        $diet = new Diet();
-        $diet->name = $nextVal;
-        $diet->save();
+        $data = [
+            'diet_key' => $uuid
+        ];
+
+        Diet::create($data);
+  
         foreach($request->exclude as $key => $value){
             $data = [
-                'diet_id' => $diet->id,
-                'diet_food' => $value
+                'diet_key' => $uuid,
+                'food_key' => $value
             ];
             $diet_food = new DietFood($data);
             $diet_food->save();
@@ -80,47 +84,47 @@ class DietController extends Controller
 
     public function getById($id) {
         $languages = Language::with(['translation' => function($query) use ($id){
-            $query->where('id', $id)->get(); }])->get();
+            $query->where('key', $id)->get(); }])->get();
         $foods = Food::with([
             'translation' => function($query) { 
-            $query->where('language_code', App::getLocale())->get();},
+            $query->where('language_id', App::getLocale())->get();},
             'food_category' => function($query) { 
-                $query->where('language_code', App::getLocale())->get();},
-            'diet_foods' => function($query) use ($id) {
-                $query->where('diet_id', $id)->get();
-            }])->get();
-
+                $query->where('language_id', App::getLocale())->get();},
+            ])->get();
+        $diet_foods = DietFood::where('diet_key', $id)->get();
+        
 
         
-        // return $foods;
+
         return view('diets.modals.edit', [
             'id' => $id,
             'languages' => $languages,
-            'foods' => $foods
+            'foods' => $foods,
+            'diet_foods' => $diet_foods
 
 
         ]);
     }
 
     public function update(Request $request, $id) {
-        
+        // return $request;
         $list = [];
-        foreach($request->language_code as $key => $value){
+        foreach($request->language_id as $key => $value){
             $list[] = [
-                'id' => $id,
+                'key' => $id,
                 'value' => $value,
-                'language_code' => $key
+                'language_id' => $key
             ];
         }
 
-        Translate::upsert($list, ['id', 'language_code'], ['value']);
+        Translate::upsert($list, ['key', 'language_id'], ['value']);
 
-        DietFood::where('diet_id', $id)->delete();
+        DietFood::where('diet_key', $id)->delete();
         if(!empty($request->exclude)){
             foreach($request->exclude as $key => $value){
                 $data = [
-                    'diet_id' => $id,
-                    'diet_food' => $value
+                    'diet_key' => $id,
+                    'food_key' => $value
                 ];
                 $diet_food = new DietFood($data);
                 $diet_food->save();
@@ -132,7 +136,10 @@ class DietController extends Controller
     }
     
     public function destroy($id) {
-        Cuisine::destroy($id);
-        return redirect()->route('cuisines');
+        Diet::where('diet_key', $id)->delete();
+        DietFood::where('diet_key', $id)->delete();
+        Translate::where('key', $id)->delete();
+
+        return redirect()->route('diets');
     }
 }

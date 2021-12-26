@@ -87,6 +87,13 @@ Route::group([
         Route::post('diets/store', 'DietController@store')->name('diet.store');
         Route::put('diets/update/{id}', 'DietController@update')->name('diet.update');
         Route::delete('diets/destroy/{id}', 'DietController@destroy')->name('diet.destroy');
+        // Recipes
+        Route::get('recipes', 'RecipeController@all')->name('recipes');
+        Route::get('recipes/create', 'RecipeController@create')->name('recipe.create');
+        Route::get('recipes/getById/{id}', 'RecipeController@getById')->name('recipe.getById');
+        Route::post('recipes/store', 'RecipeController@store')->name('recipe.store');
+        Route::put('recipes/update/{id}', 'RecipeController@update')->name('recipe.update');
+        Route::delete('recipes/destroy/{id}', 'RecipeController@destroy')->name('recipe.destroy');
 
     });
 });

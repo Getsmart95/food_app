@@ -791,7 +791,7 @@
                             <span class="nav-text">Menu</span>
                             </a>
                             <ul aria-expanded="false">
-                                <li><a href="index.html">Recipes</a></li>
+                                <li><a href="{{ Route('recipes') }}">Recipes</a></li>
                                 <li><a href="{{ Route('foods') }}">Foods</a></li>
                             </ul>
                         </li>
