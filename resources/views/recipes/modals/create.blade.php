@@ -128,13 +128,13 @@
                                                                     <th>Remove</th>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td><select class="default-select form-control wide" name="food[]">
+                                                                    {{-- <td><select class="default-select form-control wide" name="food[]">
                                                                         @foreach ($foods as $food)
                                                                         <option value ="{{ $food->food_key }}">{{ $food->translation->value }}</option>
                                                                         @endforeach
                                                                     </select></td>
                                                                     <td><input type="text" name="weight[]" class="form-control"/></td>
-                                                                    <td><input type="text" name="piece[]" class="form-control"/></td>
+                                                                    <td><input type="text" name="piece[]" class="form-control"/></td> --}}
                                                                     <td><input type="button" name="add" value="Add" id="addRemoveIp" class="btn btn-outline-dark"></td>
                                                                 </tr>
                                                                 

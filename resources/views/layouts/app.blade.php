@@ -812,8 +812,8 @@
                             <span class="nav-text">Statuses</span>
                             </a>
                             <ul aria-expanded="false">
-                                <li><a href="index-2.html">Statuses</a></li>
-                                <li><a href="index.html">Reasons</a></li>
+                                <li><a href=" {{ Route('statuses') }}">Statuses</a></li>
+                                {{-- <li><a href="{{ Route('reasons') }}">Reasons</a></li> --}}
                             </ul>
                         </li>
                         <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">

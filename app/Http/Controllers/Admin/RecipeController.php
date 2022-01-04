@@ -88,6 +88,16 @@ class RecipeController extends Controller
 
         Energy::create($data);
 
+        foreach($request->food as $key => $value){
+            $data = [
+                'recipe_key' => $uuid,
+                'food_key' => $value,
+                'weight' => 6,
+                'pieces' => 10
+            ];
+            Ingredient::create($data);
+        }
+
         $store = [
             'cooking_time' => $request->cooking_time,
             'views' => 0,

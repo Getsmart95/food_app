@@ -101,6 +101,13 @@ Route::group([
         Route::post('difficulty/store', 'DifficultyController@store')->name('difficulty.store');
         Route::put('difficulty/update/{id}', 'DifficultyController@update')->name('difficulty.update');
         Route::delete('difficulty/destroy/{id}', 'DifficultyController@destroy')->name('difficulty.destroy');
+        // Statuses
+        Route::get('statuses', 'StatusController@all')->name('statuses');
+        Route::get('statuses/create', 'StatusController@create')->name('status.create');
+        Route::get('statuses/getById/{id}', 'StatusController@getById')->name('status.getById');
+        Route::post('statuses/store', 'StatusController@store')->name('status.store');
+        Route::put('statuses/update/{id}', 'StatusController@update')->name('status.update');
+        Route::delete('statuses/destroy/{id}', 'StatusController@destroy')->name('status.destroy');
 
     });
 });
