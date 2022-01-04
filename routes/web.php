@@ -94,6 +94,13 @@ Route::group([
         Route::post('recipes/store', 'RecipeController@store')->name('recipe.store');
         Route::put('recipes/update/{id}', 'RecipeController@update')->name('recipe.update');
         Route::delete('recipes/destroy/{id}', 'RecipeController@destroy')->name('recipe.destroy');
+        // Difficulties
+        Route::get('difficulty', 'DifficultyController@all')->name('difficulties');
+        Route::get('difficulty/create', 'DifficultyController@create')->name('difficulty.create');
+        Route::get('difficulty/getById/{id}', 'DifficultyController@getById')->name('difficulty.getById');
+        Route::post('difficulty/store', 'DifficultyController@store')->name('difficulty.store');
+        Route::put('difficulty/update/{id}', 'DifficultyController@update')->name('difficulty.update');
+        Route::delete('difficulty/destroy/{id}', 'DifficultyController@destroy')->name('difficulty.destroy');
 
     });
 });

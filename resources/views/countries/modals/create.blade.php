@@ -25,14 +25,15 @@
                                     {{-- <label>Your vanity URL</label> --}}
 
                                     @foreach ($languages as $language)
-                                    <div class="input-group mb-3  input-success">
-                                        <span class="input-group-text">{{ $language->name }}</span>
+                                    <div class="mb-3 input-success">
+                                        {{-- <span class="input-group-text">{{ $language->name }}</span> --}}
+                                        <label class="form-label">{{ $language->name }}</label>
                                         <input type="hidden" name="language_id[]" value="{{ $language->iso_code }}">
                                         <input type="text" class="form-control" name="value[]">
                                     </div>
                                     @endforeach
-                                    <div class="input-group mb-3  input-success">
-                                        <span class="input-group-text">Code</span>
+                                    <div class="mb-3  input-success">
+                                        <label class="form-label">Code</label>
                                         <input type="text" class="form-control" name="code"> 
                                     </div>
                                     <div class="col-16">

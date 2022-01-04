@@ -10,8 +10,8 @@ class Energy extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'calouries',
+        'energy_key',
+        'calories',
         'fats',
         'carbohydrates',
         'proteins'

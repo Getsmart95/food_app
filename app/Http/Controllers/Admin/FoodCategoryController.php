@@ -29,7 +29,7 @@ class FoodCategoryController extends Controller
         $categories = FoodCategory::with([
             'translation' => function($query) { 
             $query->where('language_id', App::getLocale())->get();}
-        ])->get();;
+        ])->get();
 
         return view('food-categories.index', [
             'categories' => $categories

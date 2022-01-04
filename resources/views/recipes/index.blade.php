@@ -14,7 +14,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <h2 style="float: left">Countries</h2>
+                            <h2 style="float: left">Recipes</h2>
                             <a type="button" style="float: right" class="btn btn-rounded btn-success" href="{{ Route('recipe.create') }}"><span
                                 class="btn-icon-start text-info"><i class="fa fa-plus color-info"></i>
                             </span>Add</a>
@@ -58,8 +58,8 @@
                                                                     <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"/><circle fill="#000000" cx="5" cy="12" r="2"/><circle fill="#000000" cx="12" cy="12" r="2"/><circle fill="#000000" cx="19" cy="12" r="2"/></g></svg>
                                                                 </button>
                                                                 <div class="dropdown-menu">
-                                                                    <a class="dropdown-item" href="{{ Route('recipe.getById', ['id' => $country->country_key]) }}">Edit</a>
-                                                                    <form method="post" action="{{ Route('recipe.destroy', ['id' => $country->country_key]) }}" autocomplete="off">
+                                                                    {{-- <a class="dropdown-item" href="{{ Route('recipe.getById', ['id' => $country->country_key]) }}">Edit</a> --}}
+                                                                    {{-- <form method="post" action="{{ Route('recipe.destroy', ['id' => $country->country_key]) }}" autocomplete="off"> --}}
                                                                         @csrf
                                                                         @method('DELETE')
                                                                     <button class="dropdown-item" type="submit">Delete</button>

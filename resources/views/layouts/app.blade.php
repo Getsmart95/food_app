@@ -823,7 +823,7 @@
                             <ul aria-expanded="false">
                                 <li><a href="{{ Route('languages') }}">Languages</a></li>
                                 <li><a href="{{ Route('countries') }}">Countries</a></li>
-                                <li><a href="app-profile.html">Profile</a></li>
+                                <li><a href="{{ Route('difficulties') }}">Difficulties</a></li>
                                 <li><a href="post-details.html">Post Details</a></li>
                                 <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Email</a>
                                     <ul aria-expanded="false">
