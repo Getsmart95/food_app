@@ -10,7 +10,8 @@ class FoodCategory extends Model
     use HasFactory;
 
     protected $table = 'food_categories';
-
+    protected $primaryKey = 'food_category_key';
+    public $incrementing = false;
     protected $fillable = [
         'food_category_key'
     ];

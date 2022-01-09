@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Cuisine extends Model
 {
     use HasFactory;
-
+    protected $primaryKey = 'cuisine_key';
+    public $incrementing = false;
     protected $fillable = [
         'cuisine_key'
     ];

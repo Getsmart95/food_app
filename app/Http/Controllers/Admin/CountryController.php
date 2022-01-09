@@ -29,7 +29,8 @@ class CountryController extends Controller
         $countries = Country::with([
             'translation' => function($query) { 
             $query->where('language_id', App::getLocale())->get();}])->get();
-        // return $countries;
+        $temp = Translate::all();
+        // return $temp;
         return view('countries.index',[
             'countries' => $countries
         ]);

@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Recipe extends Model
 {
     use HasFactory;
-
+    protected $primaryKey = 'recipe_key';
+    public $incrementing = false;
     protected $fillable = [
         'cooking_time',
         'views',

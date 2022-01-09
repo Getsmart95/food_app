@@ -54,12 +54,12 @@ class StatusController extends Controller
             Translate::create($data);
         }
 
-        $data = [
+        $data_store = [
             'status_key' => $uuid,
             'point_min' => $request->point_min,
             'point_max' => $request->point_max
         ];
-        Status::create($data);
+        Status::create($data_store);
 
         return redirect()->route('statuses');
     }

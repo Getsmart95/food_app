@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Energy extends Model
 {
     use HasFactory;
-
+    protected $primaryKey = 'energy_key';
+    public $incrementing = false;
     protected $fillable = [
         'energy_key',
         'calories',

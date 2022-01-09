@@ -108,6 +108,13 @@ Route::group([
         Route::post('statuses/store', 'StatusController@store')->name('status.store');
         Route::put('statuses/update/{id}', 'StatusController@update')->name('status.update');
         Route::delete('statuses/destroy/{id}', 'StatusController@destroy')->name('status.destroy');
+        // Reasons
+        Route::get('reasons', 'ReasonController@all')->name('reasons');
+        Route::get('reasons/create', 'ReasonController@create')->name('reason.create');
+        Route::get('reasons/getById/{id}', 'ReasonController@getById')->name('reason.getById');
+        Route::post('reasons/store', 'ReasonController@store')->name('reason.store');
+        Route::put('reasons/update/{id}', 'ReasonController@update')->name('reason.update');
+        Route::delete('reasons/destroy/{id}', 'ReasonController@destroy')->name('reason.destroy');
 
     });
 });

@@ -7,18 +7,19 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
 use App\Models\Status;
+use App\Models\Reason;
 use App\Models\Language;
 use App\Models\Translate;
 
 class ReasonController extends Controller
 {
     public function all() {
-        $statuses = Status::with([
+        $reasons = reason::with([
             'translation' => function($query) { 
             $query->where('language_id', App::getLocale())->get();}])->get();
-        // return $statuses;
-        return view('statuses.index',[
-            'statuses' => $statuses
+        // return $reasons;
+        return view('reasons.index',[
+            'reasons' => $reasons
         ]);
     }
 
@@ -27,17 +28,17 @@ class ReasonController extends Controller
             $query->where('key', $id)->get();
         }])->get();
 
-        $Status = Status::where('Status_key', $id)->first();
-        return view('statuses.modals.edit', [
+        $reason = reason::where('reason_key', $id)->first();
+        return view('reasons.modals.edit', [
             'id' => $id,
             'languages' => $languages,
-            'Status' => $Status
+            'reason' => $reason
         ]);
     }
 
     public function create() {
         $languages = Language::all();
-        return view('statuses.modals.create', [
+        return view('reasons.modals.create', [
             'languages' => $languages
         ]);
     }
@@ -55,13 +56,12 @@ class ReasonController extends Controller
         }
 
         $data = [
-            'status_key' => $uuid,
-            'point_min' => $request->point_min,
-            'point_max' => $request->point_max
+            'reason_key' => $uuid,
+            'value' => $request->reason_value
         ];
-        Status::create($data);
+        Reason::create($data);
 
-        return redirect()->route('statuses');
+        return redirect()->route('reasons');
     }
 
     public function update(Request $request, $id) {
@@ -75,15 +75,15 @@ class ReasonController extends Controller
         }
         // return $list;
         Translate::upsert($list, ['key', 'language_id'], ['value']);
-        Status::where('Status_key', $id)->update([
+        reason::where('reason_key', $id)->update([
             'code' => $request->code
         ]);
         
-        return redirect()->route('statuses'); 
+        return redirect()->route('reasons'); 
     }
 
     public function destroy($id, Request $request) {
-        Status::where('Status_key', $id)->delete();
+        reason::where('reason_key', $id)->delete();
         Translate::where('key', $id)->delete();
         return redirect()->back();
     }

@@ -14,7 +14,8 @@ class Country extends Model
      *
      * @var array
      */
-
+    protected $primaryKey = 'country_key';
+    public $incrementing = false;
     protected $fillable = [
         'country_key',
         'code',

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Status extends Model
 {
     use HasFactory;
-
+    protected $primaryKey = 'status_key';
     protected $fillable =[
         'status_key',
         'point_min',

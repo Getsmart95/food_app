@@ -15,11 +15,11 @@
                 <div class="col-xl-6 col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Add status</h4>
+                            <h4 class="card-title">Add reason</h4>
                         </div>
                         <div class="card-body">
                             <div class="basic-form">
-                                <form method="post" action="{{ route('status.store') }}" autocomplete="off">
+                                <form method="post" action="{{ route('reason.store') }}" autocomplete="off">
                                     @csrf
                                     {{-- @method('POST') --}}
                                     {{-- <label>Your vanity URL</label> --}}
@@ -35,16 +35,10 @@
 
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <label class="form-label">Min</label>
+                                            <label class="form-label">Value</label>
                                             <div class="input-group mb-3 input-success">
-                                                <input type="number" class="form-control" name="point_min"> 
+                                                <input type="number" class="form-control" name="reason_value"> 
                                             </div>                              
-                                        </div>
-                                        <div class="col-sm-6 mt-2 mt-sm-0">
-                                            <label class="form-label">Max</label>
-                                            <div class="input-group mb-3 input-success">
-                                                <input type="number" class="form-control" name="point_max"> 
-                                            </div>                                           
                                         </div>
                                     </div>
                                     

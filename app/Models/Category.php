@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\App;
 class Category extends Model
 {
     use HasFactory;
-    
+    protected $primaryKey = 'category_key';
+    public $incrementing = false;
     protected $fillable = [
         'category_key'
     ];

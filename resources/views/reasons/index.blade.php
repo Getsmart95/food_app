@@ -15,7 +15,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h2 style="float: left">Countries</h2>
-                            <a type="button" style="float: right" class="btn btn-rounded btn-success" href="{{ Route('status.create') }}"><span
+                            <a type="button" style="float: right" class="btn btn-rounded btn-success" href="{{ Route('reason.create') }}"><span
                                 class="btn-icon-start text-info"><i class="fa fa-plus color-info"></i>
                             </span>Add</a>
                         </div>
@@ -43,23 +43,23 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($statuses as $status)
+                                            @foreach ($reasons as $reason)
                                                 <tr>
-                                                    @isset($status->translation)
-                                                        <td><strong>{{ $status->id }}</strong></td>
-                                                        <td>{{ $status->translation->value }}</td>
-                                                        <td>{{ $status->code}}</td>
-                                                        <td>{{ $status->created_at}}</td>
-                                                        <td>{{ $status->updated_at }}</td>
-                                                        <td>{{ $status->image_path}}</td>
+                                                    @isset($reason->translation)
+                                                        <td><strong>{{ $reason->id }}</strong></td>
+                                                        <td>{{ $reason->translation->value }}</td>
+                                                        <td>{{ $reason->code}}</td>
+                                                        <td>{{ $reason->created_at}}</td>
+                                                        <td>{{ $reason->updated_at }}</td>
+                                                        <td>{{ $reason->image_path}}</td>
                                                         <td>
                                                             <div class="dropdown">
                                                                 <button type="button" class="btn btn-success light sharp" data-bs-toggle="dropdown">
                                                                     <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"/><circle fill="#000000" cx="5" cy="12" r="2"/><circle fill="#000000" cx="12" cy="12" r="2"/><circle fill="#000000" cx="19" cy="12" r="2"/></g></svg>
                                                                 </button>
                                                                 <div class="dropdown-menu">
-                                                                    <a class="dropdown-item" href="{{ Route('status.getById', ['id' => $status->status_key]) }}">Edit</a>
-                                                                    <form method="post" action="{{ Route('status.destroy', ['id' => $status->status_key]) }}" autocomplete="off">
+                                                                    <a class="dropdown-item" href="{{ Route('reason.getById', ['id' => $reason->reason_key]) }}">Edit</a>
+                                                                    <form method="post" action="{{ Route('reason.destroy', ['id' => $reason->reason_key]) }}" autocomplete="off">
                                                                         @csrf
                                                                         @method('DELETE')
                                                                     <button class="dropdown-item" type="submit">Delete</button>
