@@ -24,9 +24,8 @@
                                     @method('PUT')
                                     {{-- <label>Your vanity URL</label> --}}
                                     @foreach ($languages as $language)
-                                        <div class="input-group mb-3  input-success">
-											<span class="input-group-text">{{ $language->iso_code }}</span>
-                                            <input type="hidden" class="form-control" name="id" value="{{ $id }}">
+                                        <div class="mb-3 input-success">
+                                            <label class="form-label">{{ $language->name }}</label>
                                             @empty($language->translation->language_id)
                                                 <input type="text" class="form-control" name="value[{{ $language->iso_code }}]">
                                             @endempty
@@ -35,19 +34,27 @@
                                             @endisset
                                         </div>
                                     @endforeach
-                                    <label>Choose food category</label>
-                                    <div class="input-group mb-3 input-success">
-                                        <span class="input-group-text">Category</span>
-                                        <select class="default-select form-control wide" name="food_category_key">
-                                            @foreach ($categories as $category)
-                                            <option value ="{{ $category->food_category_key }}" {{ $category->food_category_key === $food->food_category_key  ? 'selected' : null }}>{{ $category->translation->value }}</option>
-                                            @endforeach
-                                        </select>
+
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <label class="form-label">Category</label>
+                                            <div class="mb-3 input-success">
+                                                <select class="default-select form-control wide" name="food_category_key">
+                                                    @foreach ($categories as $category)
+                                                        <option value ="{{ $category->food_category_key }}" {{ $category->food_category_key === $food->food_category_key  ? 'selected' : null }}>{{ $category->translation->value }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4 mt-2 mt-sm-0">
+                                            <label class="form-label">Saving</label>
+                                            <div class="mb-3">
+                                                <button type="submit" style="width:100%; float: left; " class="btn btn-primary mb-2">Save</button>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-16">
-                                        <button type="submit" style="float: right" class="btn btn-primary mb-2">Save</button>
-                                    </div>
-                                    </div>
+                                    
+                                    
                                 </form>
                             </div>
                         </div>

@@ -38,31 +38,41 @@
                                         <div class="tab-content">
                                             <div class="tab-pane fade show active" id="recipe" role="tabpanel">
                                                 <div class="card col-xl-8 ">
-                                                    <div class="card-header">
+                                                    {{-- <div class="card-header">
                                                         <h4 class="card-title">Recipe</h4>
-                                                    </div>
+                                                    </div> --}}
                                                     <div class="card-body">
-                                                        @foreach ($languages as $language)
-                                                        <label>{{ $language->iso_code }}</label>
-                                                        <div class="input-group mb-3 input-success">
-                                                            <span class="input-group-text">Dish</span>
-                                                            <input type="text" class="form-control" name="value[]">
+                                                        <div class="custom-tab-1">
+                                                            <ul class="nav nav-tabs" role="tablist">
+                                                                @foreach ($languages as $language)
+                                                                    <li class="nav-item">
+                                                                        <a class="nav-link" data-bs-toggle="tab" href="#1"><i class="la me-2"></i>{{ $language->name }}</a>
+                                                                    </li>
+                                                                @endforeach
+                                                            </ul>
+                                                            <div class="tab-content">
+                                                                <div class="tab-pane fade show active" id="1" role="tabpanel">
+                                                                    <div class="card">
+                                                                        <div class="card-body">
+                                                                            <label>Dish</label>
+                                                                            <div class="mb-3 input-success">
+                                                                                <input type="hidden" name="language_id[]" value="{{ $language->iso_code }}">
+                                                                                <input type="text" class="form-control" name="value[]">
+                                                                            </div>
+                                                                            <label>Description</label>
+                                                                            <div class="mb-3 input-success">
+                                                                                <input type="hidden" name="language_id[]" value="{{ $language->iso_code }}">
+                                                                                <textarea class="form-control" rows="8" id="comment" name="description[]"></textarea>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        @endforeach
-                                                        @foreach ($languages as $language)
-                                                        <label>{{ $language->iso_code }}</label>
-                                                        <div class="input-group mb-3 input-success">
-                                                            <span class="input-group-text">Description</span>
-                                                            <input type="hidden" name="language_id[]" value="{{ $language->iso_code }}">
-                                                            <textarea class="form-control" rows="8" id="comment" name="description[]"></textarea>
-                                                        </div>
-                                                        @endforeach
-                                                        
                                                         <div class="row">
-                                                            <div class="col-sm-6">
-                                                                <label>Enter description dish</label>
-                                                                <div class="input-group mb-3 input-success">
-                                                                    <span class="input-group-text">Category</span>
+                                                            <div class="col-sm-6 mb-3">
+                                                                <label>Category</label>
+                                                                <div class="mb-3 input-success">
                                                                     <select class="default-select form-control wide" name="food_category_key">
                                                                         @foreach ($categories as $category)
                                                                             <option value ="{{ $category->category_key }}">{{ $category->translation->value }}</option>
@@ -70,10 +80,9 @@
                                                                     </select>
                                                                 </div>                               
                                                             </div>
-                                                            <div class="col-sm-6 mt-2 mt-sm-0">
-                                                                <label>Enter description dish</label>
-                                                                <div class="input-group mb-3 input-success">
-                                                                    <span class="input-group-text">Cuisine</span>
+                                                            <div class="col-sm-6 mt-2 mt-sm-0 mb-3">
+                                                                <label>Cuisine</label>
+                                                                <div class="mb-3 input-success">
                                                                     <select class="default-select form-control wide" name="cuisine_key">
                                                                         @foreach ($cuisines as $cuisine)
                                                                         <option value ="{{ $cuisine->cuisine_key }}">{{ $cuisine->translation->value }}</option>
@@ -84,9 +93,8 @@
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-sm-6">
-                                                                <label>Enter description dish</label>
-                                                                <div class="input-group mb-3 input-success">
-                                                                    <span class="input-group-text">Level of difficulty</span>
+                                                                <label>Level of difficulty</label>
+                                                                <div class="mb-3 input-success">
                                                                     <select class="default-select form-control wide" name="difficalty">
                                                                         @foreach ($difficulties as $difficulty)
                                                                         <option value ="{{ $difficulty->difficulty }}">{{ $difficulty->difficulty }}</option>
@@ -95,23 +103,18 @@
                                                                 </div>                               
                                                             </div>
                                                             <div class="col-sm-6 mt-2 mt-sm-0">
-                                                                <label>Enter description dish</label>
-                                                                <div class="input-group mb-3 input-success">
-                                                                    <span class="input-group-text">Cooking time</span>
+                                                                <label>Cooking time</label>
+                                                                <div class="mb-3 input-success">
                                                                     <select class="default-select form-control wide" name="cooking_time">
-                                                                        {{-- @foreach ($categories as $category) --}}
                                                                         <option value ="30">30 minutes</option>
                                                                         <option value ="45">45 minutes</option>
                                                                         <option value ="60">60 minutes</option>
                                                                         <option value ="75">75 minutes</option>
                                                                         <option value ="90">90 minutes</option>
-                                                                        {{-- @endforeach --}}
                                                                     </select>
                                                                 </div>                                                            
                                                             </div>
                                                         </div>
-                                                        
-                                                        
                                                     </div>
                                                 </div>
                                             </div>

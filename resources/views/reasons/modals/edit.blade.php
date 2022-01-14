@@ -15,32 +15,36 @@
                 <div class="col-xl-6 col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Edit country</h4>
+                            <h4 class="card-title">Edit reason</h4>
                         </div>
                         <div class="card-body">
                             <div class="basic-form">
-                                <form method="post" action="{{ route('country.update', $id) }}" autocomplete="off">
+                                <form method="post" action="{{ route('reason.update', $id) }}" autocomplete="off">
                                     @csrf
                                     @method('PUT')
-                                    {{-- <label>Your vanity URL</label> --}}
                                     @foreach ($languages as $language)
-                                        <div class="input-group mb-3  input-success">
-											<span class="input-group-text">{{ $language->iso_code }}</span>
+                                            <label class="form-label">{{ $language->name }}</label>
                                             @empty($language->translation->language_id)
                                                 <input type="text" class="form-control" name="value[{{ $language->iso_code }}]">
                                             @endempty
                                             @isset($language->translation->language_id)
                                                 <input type="text" class="form-control" name="value[{{ $language->iso_code }}]" value="{{ $language->translation->value }}">
                                             @endisset
-                                        </div>
                                     @endforeach
-                                    <div class="input-group mb-3  input-success">
-                                        <span class="input-group-text">Code</span>
-                                        <input type="text" class="form-control" name="code" value="{{ $country->code }}">
-                                    </div>
-                                    <div class="col-16">
-                                        <button type="submit" style="float: right" class="btn btn-primary mb-2">Save</button>
-                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <label class="form-label">Value</label>
+                                            <div class="input-group mb-3 input-success">
+                                                <input type="number" class="form-control" name="reason_value" value="{{ $reason->value }}"> 
+                                            </div>  
+                                        </div>                            
+                                        <div class="col-sm-4 mt-2 mt-sm-0">
+                                            <label class="form-label">Saving</label>
+                                            <div class="mb-3">
+                                                <button type="submit" style="width:100%; float: left; " class="btn btn-primary mb-2">Save</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </form>
                             </div>

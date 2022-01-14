@@ -22,28 +22,31 @@
                                 <form method="post" action="{{ route('food.store') }}" autocomplete="off">
                                     @csrf
                                     {{-- @method('POST') --}}
-
                                     @foreach ($languages as $language)
-                                    <div class="input-group mb-3  input-success">
-                                        <span class="input-group-text">{{ $language->name }}</span>
-                                        <input type="hidden" name="language_id[]" value="{{ $language->iso_code }}">
-                                        <input type="text" class="form-control" name="value[]"> 
-                                    </div>
+                                        <div class="mb-3 input-success">
+                                            <label class="form-label">{{ $language->name }}</label>
+                                            <input type="hidden" name="language_id[]" value="{{ $language->iso_code }}">
+                                            <input type="text" class="form-control" name="value[]">
+                                        </div>
                                     @endforeach
-                                    
-                                    {{-- <div class="input-group mb-3 input-group-text"> --}}
-                                    <label>Choose food category</label>
-                                    <div class="input-group mb-3 input-success">
-                                        <span class="input-group-text">Category</span>
-                                        <select class="default-select form-control wide" name="food_category_key">
-                                            @foreach ($categories as $category)
-                                            <option value ="{{ $category->food_category_key }}">{{ $category->translation->value }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="col-16">
-                                        <button type="submit" style="float: right" class="btn btn-primary mb-2">Save</button>
-                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <label class="form-label">Category</label>
+                                            <div class="mb-3 input-success">
+                                                <select class="default-select form-control wide" name="food_category_key">
+                                                    @foreach ($categories as $category)
+                                                        <option value ="{{ $category->food_category_key }}">{{ $category->translation->value }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4 mt-2 mt-sm-0">
+                                            <label class="form-label">Saving</label>
+                                            <div class="mb-3">
+                                                <button type="submit" style="width:100%; float: left; " class="btn btn-primary mb-2">Save</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </form>
                             </div>

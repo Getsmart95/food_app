@@ -22,14 +22,19 @@
                                 <form method="post" action="{{ route('difficulty.update', $id) }}" autocomplete="off">
                                     @csrf
                                     @method('PUT')
-                                    {{-- <label>Your vanity URL</label> --}}
-                                    <div class="input-group mb-3  input-success">
-                                        <span class="input-group-text">Level of dificulty</span>
-                                        <input type="number" class="form-control" name="difficulty" value="{{ $difficulty->difficulty }}">
-                                    </div>
-                                    <div class="col-16">
-                                        <button type="submit" style="float: right" class="btn btn-primary mb-2">Save</button>
-                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <label class="form-label">Level of difficulty</label>
+                                            <div class="input-group mb-3 input-success">
+                                                <input type="text" class="form-control" name="difficulty" value="{{ $difficulty->difficulty }}"> 
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4 mt-2 mt-sm-0">
+                                            <label class="form-label">Saving</label>
+                                            <div class="mb-3">
+                                                <button type="submit" style="width:100%; float: left; " class="btn btn-primary mb-2">Save</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </form>
                             </div>

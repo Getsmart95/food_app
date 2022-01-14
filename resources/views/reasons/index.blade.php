@@ -14,7 +14,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <h2 style="float: left">Countries</h2>
+                            <h2 style="float: left">Reasons</h2>
                             <a type="button" style="float: right" class="btn btn-rounded btn-success" href="{{ Route('reason.create') }}"><span
                                 class="btn-icon-start text-info"><i class="fa fa-plus color-info"></i>
                             </span>Add</a>
@@ -33,12 +33,10 @@
                                     <table class="table table-responsive-md" id="example" class="display" style="min-width: 845px">
                                         <thead>
                                             <tr>
-                                                <th style="width:80px;"><strong>#</strong></th>
-                                                <th><strong>Country</strong></th>
-                                                <th><strong>Code</strong></th>
+                                                <th><strong>Reason</strong></th>
+                                                <th><strong>Points</strong></th>
                                                 <th><strong>Created</strong></th>
                                                 <th><strong>Updated</strong></th>
-                                                <th><strong>Image</strong></th>
                                                 <th><strong>Action</strong></th>
                                             </tr>
                                         </thead>
@@ -46,12 +44,10 @@
                                             @foreach ($reasons as $reason)
                                                 <tr>
                                                     @isset($reason->translation)
-                                                        <td><strong>{{ $reason->id }}</strong></td>
                                                         <td>{{ $reason->translation->value }}</td>
-                                                        <td>{{ $reason->code}}</td>
+                                                        <td>{{ $reason->value }}</td>
                                                         <td>{{ $reason->created_at}}</td>
                                                         <td>{{ $reason->updated_at }}</td>
-                                                        <td>{{ $reason->image_path}}</td>
                                                         <td>
                                                             <div class="dropdown">
                                                                 <button type="button" class="btn btn-success light sharp" data-bs-toggle="dropdown">

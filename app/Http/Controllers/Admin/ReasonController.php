@@ -44,7 +44,6 @@ class ReasonController extends Controller
     }
 
     public function store(Request $request) {
-        // return $request;
         $uuid = Str::uuid();
         foreach($request->value as $key => $value){
             $data = [
@@ -65,7 +64,6 @@ class ReasonController extends Controller
     }
 
     public function update(Request $request, $id) {
-        // return $request;
         foreach($request->value as $key => $value){
             $list[] = [
                 'key' => $id,
@@ -73,17 +71,16 @@ class ReasonController extends Controller
                 'language_id' => $key
             ];
         }
-        // return $list;
         Translate::upsert($list, ['key', 'language_id'], ['value']);
-        reason::where('reason_key', $id)->update([
-            'code' => $request->code
+        Reason::where('reason_key', $id)->update([
+            'value' => $request->reason_value
         ]);
         
         return redirect()->route('reasons'); 
     }
 
     public function destroy($id, Request $request) {
-        reason::where('reason_key', $id)->delete();
+        Reason::where('reason_key', $id)->delete();
         Translate::where('key', $id)->delete();
         return redirect()->back();
     }
