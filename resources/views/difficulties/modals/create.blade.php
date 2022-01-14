@@ -15,20 +15,26 @@
                 <div class="col-xl-6 col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Add country</h4>
+                            <h4 class="card-title">Add difficulty</h4>
                         </div>
                         <div class="card-body">
                             <div class="basic-form">
                                 <form method="post" action="{{ route('difficulty.store') }}" autocomplete="off">
                                     @csrf
                                     {{-- @method('POST') --}}
-                                    <div class="input-group mb-3  input-success">
-                                        <span class="input-group-text">Level of difficulty</span>
-                                        <input type="number" class="form-control" name="difficulty"> 
-                                    </div>
-                                    <div class="col-16">
-                                        <button type="submit" style="float: right" class="btn btn-primary mb-2">Save</button>
-                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <label class="form-label">Level of difficulty</label>
+                                            <div class="input-group mb-3 input-success">
+                                                <input type="text" class="form-control" name="difficulty"> 
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4 mt-2 mt-sm-0">
+                                            <label class="form-label">Saving</label>
+                                            <div class="mb-3">
+                                                <button type="submit" style="width:100%; float: left; " class="btn btn-primary mb-2">Save</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
