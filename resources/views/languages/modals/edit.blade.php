@@ -22,11 +22,24 @@
                                 <form method="post" action="{{ route('language.update', $iso) }}" autocomplete="off">
                                     @csrf
                                     @method('PUT')
-                                    <div class="input-group mb-3">
-                                        <input type="text" class="form-control" name="name" value="{{ $language->name }}">
-                                        <input type="text" class="form-control" name="iso_code" value="{{ $language->iso_code }}">
-                                        <button class="btn btn-primary" type="submit">Save</button>
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <label class="form-label">Language</label>
+                                            <div class="input-group mb-3 input-success">
+                                                <input type="text" class="form-control" name="name" value="{{ $language->name }}"> 
+                                            </div>                              
+                                        </div>
+                                        <div class="col-sm-4 mt-2 mt-sm-0">
+                                            <label class="form-label">ISO</label>
+                                            <div class="input-group mb-3 input-success">
+                                                <input type="text" class="form-control" name="iso_code" value="{{ $language->iso_code }}"> 
+                                            </div>                                           
+                                        </div>
                                     </div>
+                                    <div class="col-16">
+                                        <button type="submit" style="float: right" class="btn btn-primary mb-2">Save</button>
+                                    </div>
+                                   
                                 </form>
                             </div>
                         </div>

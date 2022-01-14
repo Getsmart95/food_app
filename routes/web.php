@@ -115,6 +115,14 @@ Route::group([
         Route::post('reasons/store', 'ReasonController@store')->name('reason.store');
         Route::put('reasons/update/{id}', 'ReasonController@update')->name('reason.update');
         Route::delete('reasons/destroy/{id}', 'ReasonController@destroy')->name('reason.destroy');
+        // Tags
+        Route::get('tags', 'TagController@all')->name('tags');
+        Route::get('tags/create', 'TagController@create')->name('tag.create');
+        Route::get('tags/getById/{id}', 'TagController@getById')->name('tag.getById');
+        Route::post('tags/store', 'TagController@store')->name('tag.store');
+        Route::put('tags/update/{id}', 'TagController@update')->name('tag.update');
+        Route::delete('tags/destroy/{id}', 'TagController@destroy')->name('tag.destroy');
+        
 
     });
 });

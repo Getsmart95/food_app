@@ -31,6 +31,9 @@
                                             <li class="nav-item">
                                                 <a class="nav-link" data-bs-toggle="tab" href="#energy"><i class="la me-2"></i> Energy</a>
                                             </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" data-bs-toggle="tab" href="#tags"><i class="la me-2"></i> Tags</a>
+                                            </li>
                                         </ul>
                                         <div class="tab-content">
                                             <div class="tab-pane fade show active" id="recipe" role="tabpanel">
@@ -71,7 +74,7 @@
                                                                 <label>Enter description dish</label>
                                                                 <div class="input-group mb-3 input-success">
                                                                     <span class="input-group-text">Cuisine</span>
-                                                                    <select class="default-select form-control wide" name="food_category_key">
+                                                                    <select class="default-select form-control wide" name="cuisine_key">
                                                                         @foreach ($cuisines as $cuisine)
                                                                         <option value ="{{ $cuisine->cuisine_key }}">{{ $cuisine->translation->value }}</option>
                                                                         @endforeach
@@ -215,6 +218,38 @@
                                                 </div>
                                                 
                                             </div>
+                                            <div class="tab-pane fade" id="tags">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h4 class="card-title">Tags</h4>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        
+                                                        <div class="table-responsive">
+                                                            <table class="table table-responsive-md" id="example">
+                                                                <tr>
+                                                                    <th>Food</th>
+                                                                    <th>Weight</th>
+                                                                    <th>Price</th>
+                                                                    <th>Remove</th>
+                                                                </tr>
+                                                                <tr>
+                                                                    {{-- <td><select class="default-select form-control wide" name="food[]">
+                                                                        @foreach ($foods as $food)
+                                                                        <option value ="{{ $food->food_key }}">{{ $food->translation->value }}</option>
+                                                                        @endforeach
+                                                                    </select></td>
+                                                                    <td><input type="text" name="weight[]" class="form-control"/></td>
+                                                                    <td><input type="text" name="piece[]" class="form-control"/></td> --}}
+                                                                    <td><input type="button" name="add" value="Add" id="addRemoveIp" class="btn btn-outline-dark"></td>
+                                                                </tr>
+                                                                
+                                                            </table>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                         {{-- </div> --}}
@@ -235,7 +270,8 @@
     <!--**********************************
         Content body end
     ***********************************-->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> --}}
 <script>
     var i = 0;
     $("#addRemoveIp").click(function () {

@@ -21,12 +21,22 @@
                             <div class="basic-form">
                                 <form method="post" action="{{ route('language.store') }}" autocomplete="off">
                                     @csrf
-                                    <div class="input-group mb-3 input-success">
-                                        <span class="input-group-text">Language</span>
-                                        <input type="text" name="name" class="form-control">
-                                        <span class="input-group-text">Code</span>
-                                        <input type="text" name="iso_code" class="form-control">
-                                        <button class="btn btn-primary" type="submit">Save</button>
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <label class="form-label">Language</label>
+                                            <div class="input-group mb-3 input-success">
+                                                <input type="text" class="form-control" name="name"> 
+                                            </div>                              
+                                        </div>
+                                        <div class="col-sm-4 mt-2 mt-sm-0">
+                                            <label class="form-label">ISO</label>
+                                            <div class="input-group mb-3 input-success">
+                                                <input type="text" class="form-control" name="iso_code"> 
+                                            </div>                                           
+                                        </div>
+                                    </div>
+                                    <div class="col-16">
+                                        <button type="submit" style="float: right" class="btn btn-primary mb-2">Save</button>
                                     </div>
                                 </form>
                             </div>
