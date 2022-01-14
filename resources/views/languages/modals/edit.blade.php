@@ -39,7 +39,6 @@
                                     <div class="col-16">
                                         <button type="submit" style="float: right" class="btn btn-primary mb-2">Save</button>
                                     </div>
-                                   
                                 </form>
                             </div>
                         </div>

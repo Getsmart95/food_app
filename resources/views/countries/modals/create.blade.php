@@ -22,23 +22,26 @@
                                 <form method="post" action="{{ route('country.store') }}" autocomplete="off">
                                     @csrf
                                     {{-- @method('POST') --}}
-                                    {{-- <label>Your vanity URL</label> --}}
-
                                     @foreach ($languages as $language)
-                                    <div class="mb-3 input-success">
-                                        {{-- <span class="input-group-text">{{ $language->name }}</span> --}}
-                                        <label class="form-label">{{ $language->name }}</label>
-                                        <input type="hidden" name="language_id[]" value="{{ $language->iso_code }}">
-                                        <input type="text" class="form-control" name="value[]">
-                                    </div>
+                                        <div class="mb-3 input-success">
+                                            <label class="form-label">{{ $language->name }}</label>
+                                            <input type="hidden" name="language_id[]" value="{{ $language->iso_code }}">
+                                            <input type="text" class="form-control" name="value[]">
+                                        </div>
                                     @endforeach
-                                    <div class="mb-3  input-success">
-                                        <label class="form-label">Code</label>
-                                        <input type="text" class="form-control" name="code"> 
-                                    </div>
-                                    <div class="col-16">
-                                        <button type="submit" style="float: right" class="btn btn-primary mb-2">Save</button>
-                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <label class="form-label">Code</label>
+                                            <div class="input-group mb-3 input-success">
+                                            <input type="text" class="form-control" name="code"> 
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4 mt-2 mt-sm-0">
+                                            <label class="form-label">Saving</label>
+                                            <div class="mb-3">
+                                                <button type="submit" style="width:100%; float: left; " class="btn btn-primary mb-2">Save</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
