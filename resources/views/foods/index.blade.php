@@ -33,20 +33,20 @@
                                     <table class="table table-responsive-md" id="example" class="display" style="min-width: 845px">
                                         <thead>
                                             <tr>
-                                                <th style="width:80px;"><strong>#</strong></th>
-                                                <th><strong>Food</strong></th>
-                                                <th><strong>Category</strong></th>
-                                                <th><strong>Created</strong></th>
-                                                <th><strong>Updated</strong></th>
-                                                <th><strong>Action</strong></th>
+                                                <th>Food</th>
+                                                <th>Description</th>
+                                                <th>Category</th>
+                                                <th>Created</th>
+                                                <th>Updated</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($foods as $food)
                                                 <tr>
                                                     @isset($food->translation)
-                                                        <td><strong>{{ $food->id }}</strong></td>
                                                         <td>{{ $food->translation->value }}</td>
+                                                        <td>{{ $food->translation->description }}</td>
                                                         <td>{{ $food->food_category->value }}</td>
                                                         <td>{{ $food->created_at}}</td>
                                                         <td>{{ $food->updated_at }}</td>

@@ -50,7 +50,8 @@ class FoodCategoryController extends Controller
             $data = [
                 'key' => $uuid,
                 'value' => $value,
-                'language_id' => $request->language_id[$key]
+                'language_id' => $request->language_id[$key],
+                'description' => $request->description[$key]
             ];
             Translate::create($data);
         }
@@ -72,15 +73,16 @@ class FoodCategoryController extends Controller
     }
 
     public function update(Request $request, $id) {
-        foreach($request->language_id as $key => $value){
+        foreach($request->value as $key => $value){
             $list[] = [
                 'key' => $id,
                 'value' => $value,
-                'language_id' => $key
+                'language_id' => $key,
+                'description' => $request->description[$key]
             ];
         }
 
-        Translate::upsert($list, ['key', 'language_id'], ['value']);
+        Translate::upsert($list, ['key', 'language_id'], ['value', 'description']);
 
         return redirect()->route('foods.categories');
     }

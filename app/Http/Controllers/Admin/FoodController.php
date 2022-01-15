@@ -57,7 +57,8 @@ class FoodController extends Controller
             $data = [
                 'key' => $uuid,
                 'value' => $value,
-                'language_id' => $request->language_id[$key]
+                'language_id' => $request->language_id[$key],
+                'description' => $request->description[$key]
             ];
             Translate::create($data);
         }
@@ -77,8 +78,7 @@ class FoodController extends Controller
             $query->where('key', $id)->get(); }])->get();
         $categories = FoodCategory::with('translation')->get();
         $food = Food::where('food_key', $id)->first();
-        // return $food;
-        // return $languages;
+
         return view('foods.modals.edit', [
             'id' => $id,
             'languages' => $languages,
@@ -94,11 +94,12 @@ class FoodController extends Controller
             $list[] = [
                 'key' => $id,
                 'value' => $value,
-                'language_id' => $key
+                'language_id' => $key,
+                'description' => $request->description[$key]
             ];
         }
 
-        Translate::upsert($list, ['key', 'language_id'], ['value']);
+        Translate::upsert($list, ['key', 'language_id'], ['value', 'description']);
         Food::where('food_key', $id)->update([
             'food_category_key' => $request->food_category_key
         ]);

@@ -49,7 +49,8 @@ class CategoryController extends Controller
             $data = [
                 'key' => $uuid,
                 'value' => $value,
-                'language_id' => $request->language_id[$key]
+                'language_id' => $request->language_id[$key],
+                'description' => $request->description[$key]
             ];
             Translate::create($data);
 
@@ -80,11 +81,12 @@ class CategoryController extends Controller
             $list[] = [
                 'key' => $id,
                 'value' => $value,
-                'language_id' => $key
+                'language_id' => $key,
+                'description' => $request->description[$key]
             ];
         }
 
-        Translate::upsert($list, ['key', 'language_id'], ['value']);
+        Translate::upsert($list, ['key', 'language_id'], ['value', 'description']);
         return redirect()->route('categories');
     }
     
