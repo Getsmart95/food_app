@@ -56,7 +56,7 @@ class RecipeController extends Controller
     }
 
     public function store(Request $request) {
-        // return $request;
+        return $request;
         $uuid = Str::uuid();
         foreach($request->value as $key => $value){
             $data = [

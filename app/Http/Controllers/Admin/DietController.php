@@ -109,15 +109,16 @@ class DietController extends Controller
     public function update(Request $request, $id) {
         // return $request;
         $list = [];
-        foreach($request->language_id as $key => $value){
+        foreach($request->value as $key => $value){
             $list[] = [
                 'key' => $id,
                 'value' => $value,
-                'language_id' => $key
+                'language_id' => $key,
+                'description' => $request->description[$key]
             ];
         }
 
-        Translate::upsert($list, ['key', 'language_id'], ['value']);
+        Translate::upsert($list, ['key', 'language_id'], ['value', 'description']);
 
         DietFood::where('diet_key', $id)->delete();
         if(!empty($request->exclude)){

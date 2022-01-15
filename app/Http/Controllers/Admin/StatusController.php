@@ -27,11 +27,11 @@ class StatusController extends Controller
             $query->where('key', $id)->get();
         }])->get();
 
-        $Status = Status::where('Status_key', $id)->first();
+        $status = Status::where('status_key', $id)->first();
         return view('statuses.modals.edit', [
             'id' => $id,
             'languages' => $languages,
-            'Status' => $Status
+            'status' => $status
         ]);
     }
 
@@ -49,7 +49,8 @@ class StatusController extends Controller
             $data = [
                 'key' => $uuid,
                 'value' => $value,
-                'language_id' => $request->language_id[$key]
+                'language_id' => $request->language_id[$key],
+                'description' => $request->description[$key]
             ];
             Translate::create($data);
         }
@@ -70,20 +71,22 @@ class StatusController extends Controller
             $list[] = [
                 'key' => $id,
                 'value' => $value,
-                'language_id' => $key
+                'language_id' => $key,
+                'description' => $request->description[$key]
             ];
         }
         // return $list;
-        Translate::upsert($list, ['key', 'language_id'], ['value']);
-        Status::where('Status_key', $id)->update([
-            'code' => $request->code
+        Translate::upsert($list, ['key', 'language_id'], ['value', 'description']);
+        Status::where('status_key', $id)->update([
+            'point_min' => $request->point_min,
+            'point_max' => $request->point_max
         ]);
         
         return redirect()->route('statuses'); 
     }
 
     public function destroy($id, Request $request) {
-        Status::where('Status_key', $id)->delete();
+        Status::where('status_key', $id)->delete();
         Translate::where('key', $id)->delete();
         return redirect()->back();
     }

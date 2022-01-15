@@ -9,6 +9,7 @@ class Status extends Model
 {
     use HasFactory;
     protected $primaryKey = 'status_key';
+    public $incrementing = false;
     protected $fillable =[
         'status_key',
         'point_min',
@@ -22,6 +23,6 @@ class Status extends Model
      */
     public function translation()
     {
-        return $this->belongsTo(Translate::class, 'country_key', 'key');
+        return $this->belongsTo(Translate::class, 'status_key', 'key');
     }
 }

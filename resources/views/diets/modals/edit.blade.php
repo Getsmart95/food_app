@@ -26,19 +26,56 @@
                             <div class="basic-form">
                                     @csrf
                                     @method('PUT')
-                                    {{-- <label>Your vanity URL</label> --}}
-                                    @foreach ($languages as $language)
-                                        <div class="input-group mb-3  input-success">
-                                            <span class="input-group-text">{{ $language->iso_code }}</span>
-                                            <input type="hidden" class="form-control" name="id" value="{{ $id }}">
-                                            @empty($language->translation->language_id)
-                                                <input type="text" class="form-control" name="language_id[{{ $language->iso_code }}]">
-                                            @endempty
-                                            @isset($language->translation->language_id)
-                                                <input type="text" class="form-control" name="language_id[{{ $language->iso_code }}]" value="{{ $language->translation->value }}">
-                                            @endisset
+                                    <div class="tab-pane fade show active" id="recipe" role="tabpanel">
+                                        <div class="custom-tab-1">
+                                                <ul class="nav nav-tabs" role="tablist">
+                                                    @foreach ($languages as $language)
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" data-bs-toggle="tab" href="#{{ $language->iso_code }}"><i class="la me-2"></i>{{ $language->name }}</a>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                                <div class="tab-content">
+                                                    @foreach ($languages as $language)
+                                                    @if ($loop->first)
+                                                        <div class="tab-pane fade show active" id="{{ $language->iso_code }}" role="tabpanel">
+                                                    @else
+                                                        <div class="tab-pane fade" id="{{ $language->iso_code }}" role="tabpanel">
+                                                    @endif
+                                                        <div class="card">
+                                                            <div class="card-body">
+                                                                <div class="mb-3 input-success">
+                                                                @empty($language->translation->language_id)
+                                                                    <label>Reason</label>
+                                                                    <div class="mb-3 input-success">
+                                                                    <input type="text" class="form-control" name="value[{{ $language->iso_code }}]">
+                                                                    </div>
+                                                                    <label>Description</label>
+                                                                    <div class="mb-3 input-success">
+                                                                        <textarea class="form-control" rows="8" id="comment" name="description[{{ $language->iso_code }}]"></textarea>
+                                                                    </div>
+                                                                @endempty
+                                                                @isset($language->translation->language_id)
+                                                                    <label>Reason</label>
+                                                                    <div class="mb-3 input-success">
+                                                                    <input type="text" class="form-control" name="value[{{ $language->iso_code }}]" value="{{ $language->translation->value }}">
+                                                                    </div>
+                                                                    <label>Description</label>
+                                                                    <div class="mb-3 input-success">
+                                                                        <textarea class="form-control" rows="8" id="comment" name="description[{{ $language->iso_code }}]">{{ $language->translation->description }}</textarea>
+                                                                    </div>
+                                                                @endisset
+                                                                </div>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
                                         </div>
-                                    @endforeach
+                                    </div>
+                                    
                                     <div class="card">
                                         <div class="card-header">
                                             <h4 class="card-title">Basic Datatable</h4>
@@ -48,7 +85,6 @@
                                                 <table id="example" class="display" >
                                                     <thead>
                                                         <tr>
-                                                            <th style="width:40px;"><strong>#</strong></th>
                                                             <th>Category</th>
                                                             <th>Food</th>
                                                             <th>Exclude</th>
@@ -57,48 +93,30 @@
                                                     <tbody>
                                                         @foreach ($foods as $food)
                                                         <tr>
-                                                            <th>{{ $food->id }}</th>
                                                             <td>{{ $food->food_category->value }}</td>
                                                             <td>{{ $food->translation->value }}</td>
                                                             <td><div class="form-check custom-checkbox mb-3 checkbox-warning check-xl">
                                                                 @foreach ($diet_foods as $diet_food)
-                                                                    {{-- @empty($diet_foods)
-                                                                    @endempty --}}
                                                                     @if ($diet_food->food_key == $food->food_key)
                                                                         <input type="checkbox" name="exclude[]" value={{ $food->food_key }} checked class="form-check-input"  id="customCheckBox9">
                                                                         @break
-                                                                    @elseif ($diet_foods->last() === $diet_food)
+                                                                    @elseif ($diet_foods->last() == $diet_food)
                                                                         <input type="checkbox" name="exclude[]" value={{ $food->food_key }} class="form-check-input"  id="customCheckBox9">
                                                                         @break
                                                                     @endif
-                                                                    
                                                                 @endforeach
-                                                                
-                                                              
-                                                                <label class="form-check-label" for="customCheckBox9"></label>
+                                                                @empty($diet_foods[0])
+                                                                    <input type="checkbox" name="exclude[]" value={{ $food->food_key }} class="form-check-input"  id="customCheckBox9">
+                                                                @endempty
                                                             </div></td>
                                                         </tr>
                                                         @endforeach
                                                     </tbody>
-                                                    {{-- <tfoot>
-                                                        <tr>
-                                                            <th style="width:40px;"><strong>#</strong></th>
-                                                            <th>Food</th>
-                                                            <th>Category</th>
-                                                            <th>Exclude</th>
-                                                        </tr>
-                                                    </tfoot> --}}
                                                 </table>
                                             </div>
                                         </div>
                                     </div>
-
-                                    {{-- <div class="col-4">
-                                        <button type="submit" style="float: right" class="btn btn-primary mb-2">Save</button>
-                                    </div> --}}
-                                    
-                                    
-                                    </div>
+                                </div>
                             </div>
                         </form>
 

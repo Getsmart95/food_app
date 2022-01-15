@@ -33,11 +33,11 @@
                                     <table class="table table-responsive-md" id="example" class="display" style="min-width: 845px">
                                         <thead>
                                             <tr>
-                                                <th><strong>Reason</strong></th>
-                                                <th><strong>Points</strong></th>
-                                                <th><strong>Created</strong></th>
-                                                <th><strong>Updated</strong></th>
-                                                <th><strong>Action</strong></th>
+                                                <th>Reason</th>
+                                                <th>Points</th>
+                                                <th>Created</th>
+                                                <th>Updated</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -45,6 +45,7 @@
                                                 <tr>
                                                     @isset($reason->translation)
                                                         <td>{{ $reason->translation->value }}</td>
+                                                        <td>{{ $reason->translation->description }}</td>
                                                         <td>{{ $reason->value }}</td>
                                                         <td>{{ $reason->created_at}}</td>
                                                         <td>{{ $reason->updated_at }}</td>

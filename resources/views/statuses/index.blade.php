@@ -14,7 +14,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <h2 style="float: left">Countries</h2>
+                            <h2 style="float: left">Statuses</h2>
                             <a type="button" style="float: right" class="btn btn-rounded btn-success" href="{{ Route('status.create') }}"><span
                                 class="btn-icon-start text-info"><i class="fa fa-plus color-info"></i>
                             </span>Add</a>
@@ -33,23 +33,24 @@
                                     <table class="table table-responsive-md" id="example" class="display" style="min-width: 845px">
                                         <thead>
                                             <tr>
-                                                <th style="width:80px;"><strong>#</strong></th>
-                                                <th><strong>Country</strong></th>
-                                                <th><strong>Code</strong></th>
-                                                <th><strong>Created</strong></th>
-                                                <th><strong>Updated</strong></th>
-                                                <th><strong>Image</strong></th>
-                                                <th><strong>Action</strong></th>
+                                                <th>Status</th>
+                                                <th>Description</th>
+                                                <th>Point Min</th>
+                                                <th>Point Max</th>
+                                                <th>Created</th>
+                                                <th>Updated</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($statuses as $status)
                                                 <tr>
                                                     @isset($status->translation)
-                                                        <td><strong>{{ $status->id }}</strong></td>
                                                         <td>{{ $status->translation->value }}</td>
-                                                        <td>{{ $status->code}}</td>
-                                                        <td>{{ $status->created_at}}</td>
+                                                        <td>{{ $status->translation->description }}</td>
+                                                        <td>{{ $status->point_min }}</td>
+                                                        <td>{{ $status->point_max }}</td>
+                                                        <td>{{ $status->created_at }}</td>
                                                         <td>{{ $status->updated_at }}</td>
                                                         <td>{{ $status->image_path}}</td>
                                                         <td>

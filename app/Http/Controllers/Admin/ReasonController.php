@@ -49,7 +49,8 @@ class ReasonController extends Controller
             $data = [
                 'key' => $uuid,
                 'value' => $value,
-                'language_id' => $request->language_id[$key]
+                'language_id' => $request->language_id[$key],
+                'description' => $request->description[$key]
             ];
             Translate::create($data);
         }
@@ -64,14 +65,16 @@ class ReasonController extends Controller
     }
 
     public function update(Request $request, $id) {
+        // return $request;
         foreach($request->value as $key => $value){
             $list[] = [
                 'key' => $id,
                 'value' => $value,
-                'language_id' => $key
+                'language_id' => $key,
+                'description' => $request->description[$key]
             ];
         }
-        Translate::upsert($list, ['key', 'language_id'], ['value']);
+        Translate::upsert($list, ['key', 'language_id'], ['value', 'description']);
         Reason::where('reason_key', $id)->update([
             'value' => $request->reason_value
         ]);
