@@ -17,7 +17,7 @@
                         <form method="post" action="{{ route('diet.update', $id) }}" autocomplete="off">
 
                         <div class="card-header">
-                            <h4 class="card-title">Add Diet</h4>
+                            <h4 class="card-title">Update Diet</h4>
                             <div class="col-4">
                                 <button type="submit" style="float: right" class="btn btn-primary mb-2">Save</button>
                             </div>

@@ -33,19 +33,19 @@
                                     <table class="table table-responsive-md" id="example" class="display" style="min-width: 845px">
                                         <thead>
                                             <tr>
-                                                <th style="width:80px;"><strong>#</strong></th>
-                                                <th><strong>Cuisine</strong></th>
-                                                <th><strong>Created</strong></th>
-                                                <th><strong>Updated</strong></th>
-                                                <th><strong>Action</strong></th>
+                                                <th>Cuisine</th>
+                                                <th>Description</th>
+                                                <th>Created</th>
+                                                <th>Updated</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($cuisines as $cuisine)
                                                 <tr>
                                                     @isset($cuisine->translation)
-                                                        <td><strong>{{ $cuisine->id }}</strong></td>
                                                         <td>{{ $cuisine->translation->value }}</td>
+                                                        <td>{{ $cuisine->translation->description }}</td>
                                                         <td>{{ $cuisine->created_at}}</td>
                                                         <td>{{ $cuisine->updated_at }}</td>
                                                         <td>

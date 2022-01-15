@@ -79,7 +79,7 @@ class DietController extends Controller
             $diet_food->save();
         }
         
-        // return redirect()->route('diets');
+        return redirect()->route('diets');
     }
 
     public function getById($id) {
@@ -107,7 +107,6 @@ class DietController extends Controller
     }
 
     public function update(Request $request, $id) {
-        // return $request;
         $list = [];
         foreach($request->value as $key => $value){
             $list[] = [

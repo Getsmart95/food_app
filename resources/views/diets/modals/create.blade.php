@@ -17,7 +17,7 @@
                         <form method="post" action="{{ route('diet.store') }}" autocomplete="off">
 
                         <div class="card-header">
-                            <h4 class="card-title">Add Diet</h4>
+                            <h4 class="card-title">Append Diet</h4>
                             <div class="col-4">
                                 <button type="submit" style="float: right" class="btn btn-primary mb-2">Save</button>
                             </div>
@@ -60,24 +60,16 @@
                                             </div>
                                         </div>
                                     </div>
-                                    {{-- @foreach ($languages as $language)
-                                                <div class="input-group mb-3  input-success">
-                                                    <span class="input-group-text">{{ $language->name }}</span>
-                                                    <input type="hidden" name="language_id[]" value="{{ $language->iso_code }}">
-                                                    <input type="text" class="form-control" name="value[]"> 
-                                                </div>
-                                    @endforeach --}}
+                                    
                                     <div class="card">
                                         <div class="card-header">
                                             <h4 class="card-title">Basic Datatable</h4>
                                         </div>
                                         <div class="card-body">
-                                            
                                             <div class="table-responsive">
                                                 <table id="example" class="display" >
                                                     <thead>
                                                         <tr>
-                                                            <th style="width:2%;"><strong>#</strong></th>
                                                             <th>Category</th>
                                                             <th>Food</th>
                                                             <th>Exclude</th>
@@ -86,7 +78,6 @@
                                                     <tbody>
                                                         @foreach ($foods as $food)
                                                         <tr>
-                                                            <th>{{ $food->id }}</th>
                                                             <td>{{ $food->food_category->value }}</td>
                                                             <td>{{ $food->translation->value }}</td>
                                                             <td><div class="form-check custom-checkbox mb-3 checkbox-warning check-xl">
