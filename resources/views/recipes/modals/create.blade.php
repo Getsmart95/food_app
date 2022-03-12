@@ -127,28 +127,21 @@
                                                 <div class="card">
                                                     <div class="card-header">
                                                         <h4 class="card-title">Ingredients</h4>
+                                                        <a type="button" style="float: right" class="btn btn-rounded btn-success" name="add" value="Add" id="addRemoveIp"><span
+                                                            class="btn-icon-start text-info"><i class="fa fa-plus color-info"></i>
+                                                        </span>Add</a>
+                                                        {{-- <input type="button" name="add" value="Add" id="addRemoveIp" class="btn btn-outline-dark"> --}}
                                                     </div>
                                                     <div class="card-body">
                                                         
                                                         <div class="table-responsive">
-                                                            <table class="table table-responsive-md" id="example">
+                                                            <table class="table" id="example">
                                                                 <tr>
                                                                     <th>Food</th>
                                                                     <th>Weight</th>
                                                                     <th>Price</th>
                                                                     <th>Remove</th>
                                                                 </tr>
-                                                                <tr>
-                                                                    {{-- <td><select class="default-select form-control wide" name="food[]">
-                                                                        @foreach ($foods as $food)
-                                                                        <option value ="{{ $food->food_key }}">{{ $food->translation->value }}</option>
-                                                                        @endforeach
-                                                                    </select></td>
-                                                                    <td><input type="text" name="weight[]" class="form-control"/></td>
-                                                                    <td><input type="text" name="piece[]" class="form-control"/></td> --}}
-                                                                    <td><input type="button" name="add" value="Add" id="addRemoveIp" class="btn btn-outline-dark"></td>
-                                                                </tr>
-                                                                
                                                             </table>
                                                             
                                                         </div>
@@ -178,12 +171,11 @@
                                                                             <td style="width: 80px"><input type="number" step="0.1" class="form-control" name="calories"></td>
                                                                             <td>
                                                                                 <div class="progress" style="background: rgba(127, 99, 244, .1)">
-                                                                                    <div class="progress-bar" style="width: 70%;" role="progressbar"><span class="sr-only">70% Complete</span>
+                                                                                    <div class="progress-bar" style="width: 60%;" role="progressbar"><span class="sr-only">70% Complete</span>
                                                                                     </div>
                                                                                 </div>
                                                                             </td>
                                                                             <td><span class="badge badge-dark light">70%</span></td>
-                                                                            {{-- <td><span class="badge badge-danger">7</span></td> --}}
                                                                         </tr>
                                                                         <tr>
                                                                             <td>Fats</td>
@@ -241,28 +233,13 @@
                                                                     <th>Price</th>
                                                                     <th>Remove</th>
                                                                 </tr>
-                                                                <tr>
-                                                                    {{-- <td><select class="default-select form-control wide" name="food[]">
-                                                                        @foreach ($foods as $food)
-                                                                        <option value ="{{ $food->food_key }}">{{ $food->translation->value }}</option>
-                                                                        @endforeach
-                                                                    </select></td>
-                                                                    <td><input type="text" name="weight[]" class="form-control"/></td>
-                                                                    <td><input type="text" name="piece[]" class="form-control"/></td> --}}
-                                                                    <td><input type="button" name="add" value="Add" id="addRemoveIp" class="btn btn-outline-dark"></td>
-                                                                </tr>
-                                                                
                                                             </table>
-                                                            
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                        {{-- </div> --}}
-                                    {{-- </div> --}}
-                                    
                                     <div class="col-16">
                                         <button type="submit" style="float: right" class="btn btn-primary mb-2">Save</button>
                                     </div>
@@ -292,7 +269,7 @@
                                     '</select></div></td>'+
                                     '<td><input type="text" name="weight[]" class="form-control"/></td>'+
                                     '<td><input type="text" name="piece[]" class="form-control"/></td>'+
-                                    '<td><input type="button" name="add" value="Add" id="addRemoveIp" class="btn btn-outline-dark"></td>'+
+                                    '<td><input type="button" name="remove" value="Remove"  class="btn btn-outline-dark remove-item"></td>'+
                                 '</tr>'); });
     $(document).on('click', '.remove-item', function () {
         $(this).parents('tr').remove();

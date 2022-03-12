@@ -66,7 +66,6 @@ class StatusController extends Controller
     }
 
     public function update(Request $request, $id) {
-        // return $request;
         foreach($request->value as $key => $value){
             $list[] = [
                 'key' => $id,
@@ -75,7 +74,6 @@ class StatusController extends Controller
                 'description' => $request->description[$key]
             ];
         }
-        // return $list;
         Translate::upsert($list, ['key', 'language_id'], ['value', 'description']);
         Status::where('status_key', $id)->update([
             'point_min' => $request->point_min,

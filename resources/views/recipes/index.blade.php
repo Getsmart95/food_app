@@ -33,13 +33,12 @@
                                     <table class="table table-responsive-md" id="example" class="display" style="min-width: 845px">
                                         <thead>
                                             <tr>
-                                                <th style="width:80px;"><strong>#</strong></th>
-                                                <th><strong>Country</strong></th>
-                                                <th><strong>Code</strong></th>
-                                                <th><strong>Created</strong></th>
-                                                <th><strong>Updated</strong></th>
-                                                <th><strong>Image</strong></th>
-                                                <th><strong>Action</strong></th>
+                                                <th>Recipes</th>
+                                                <th>Description</th>
+                                                <th>Created</th>
+                                                <th>Updated</th>
+                                                <th>Image</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
